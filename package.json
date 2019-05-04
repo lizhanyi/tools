@@ -1,7 +1,7 @@
 {
-  "name": "tools",
+  "name": "flylee/tools",
   "version": "1.0.0",
-  "description": "tools javascript",
+  "description": "tools ",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,9 +11,8 @@
     "url": "git+https://github.com/lizhanyi/tools.git"
   },
   "keywords": [
-    "javascrip",
-    "es6",
-    "tools"
+    "tools",
+    "javascript"
   ],
   "author": "flylee",
   "license": "ISC",
