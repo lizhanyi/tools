@@ -1,4 +1,4 @@
-class NumToZh_cn {
+export default class NumToZh_cn {
 	numLevel = [ "", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿" ]
 	currencyUnit = [ '角', '分' ]
 	numMapToCh = {
@@ -31,11 +31,11 @@ class NumToZh_cn {
 		return arr.map( ( item, index ) => this._test( arr, item, index ) ).join('').replace(/零+/g, '零' ).replace(/零$/,'') + '元';
 	}
 	_dataDeciHandle( arr ){
-		return arr.map( ( item, index ) =>   item === '0' ? '' : this.numMapToCh[ item ] + this.currencyUnit[ index ] ).join('');
+		return arr.map( ( item, index ) => item === '0' ? '' : this.numMapToCh[ item ] + this.currencyUnit[ index ] ).join('');
 	}
-	convert( ){
-		if( !/^\d+(\.\d+)?$/.test( this.numStr.trim() ) ) throw 'param is not number string';
-		const [ x='', y='' ] = this.numStr.split('.');
+	convert( numStr ){
+		if( !/^\d+(\.\d+)?$/.test( numStr.trim() ) ) throw 'param is not number string';
+		const [ x='', y='' ] = numStr.split('.');
 		return this._dataIntHandle([...x]) + this._dataDeciHandle([...y]) + '整';
 	}
 }
