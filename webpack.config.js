@@ -1,17 +1,20 @@
 const path = require( 'path' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
+
+const setDirname = dirname =>  path.resolve( __dirname, dirname );
+
 module.exports = {
-    entry: path.resolve( __dirname,'src/index.js' ),
+    entry: setDirname( 'src/index.js' ),
     output: {
-        path: path.resolve( __dirname, 'dist'),
+        path: setDirname( 'dist'),
         filename: 'index.js'
     },
     module: {
         rules: [{
             test: /\.js$/,
             exclude: /(node_modules|bower_components)/,
-            include: path.resolve( __dirname, 'src' ), // 只处理 src 目录下的文件
+            include: setDirname( 'src' ), // 只处理 src 目录下的文件
             use: {
                 loader: 'babel-loader',
                 options: {
@@ -22,7 +25,7 @@ module.exports = {
         }]
     },
     plugins: [
-        new CleanWebpackPlugin({ }),
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: './index.html',
             inject : 'body', // 制定 js 被插入的位置
