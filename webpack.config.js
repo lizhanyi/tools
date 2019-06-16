@@ -25,6 +25,12 @@ module.exports = {
         new CleanWebpackPlugin({ }),
         new HtmlWebpackPlugin({
             template: './index.html',
+            title: 'feitools',
+            inject : 'body', // 制定 js 被插入的位置
+            // minify : { // 压缩模板
+			// 	removeComments : true, // 删除注释
+			// 	collapseWhitespace : true, // 删除空格
+			// }
         }),
     ],
 };
