@@ -1,10 +1,10 @@
 {
   "name": "feitools",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "tools ",
-  "main": "./dist/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
