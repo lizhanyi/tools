@@ -1,9 +1,11 @@
 /** 
- * 
- * @param { key: 存储的键 }
- * @param { type: 存储类型 }
+ * @param { key: 存储的键  }
+ * @param { type: 存储类型 local => localStorage, session => sessionStorage  }
 */
 export default class Memory{
+    static clear( type="local"){
+        this.map[ type ].clear()
+    }
     constructor( key, type ){
         this.key = key;
         this.type = type;

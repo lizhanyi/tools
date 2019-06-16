@@ -23,19 +23,27 @@ export default class NumToZh_cn {
 		'８': '捌',
 		'９': '玖',
 	}
+
 	_test( arr, item, index ){
 		const unit = this.numLevel[ arr.length - index - 1 ];
-		return item === '0' ? ( unit === '万' || unit === '亿' ) ? unit : '零' : this.numMapToCh[ item ] + unit;
+		return item === '0' ? /万|亿/.test( unit ) ? unit : '零' : this.numMapToCh[ item ] + unit;
 	}
+
 	_dataIntHandle( arr ){
-		return arr.map( ( item, index ) => this._test( arr, item, index ) ).join('').replace(/零+/g, '零' ).replace(/零$/,'') + '元';
+		return arr.map( ( item, index ) => this._test( arr, item, index ) )
+			.join('')
+			.replace(/零+/g, '零' )
+			.replace(/零$/,'') + '元';
 	}
+
 	_dataDeciHandle( arr ){
 		return arr.map( ( item, index ) => item === '0' ? '' : this.numMapToCh[ item ] + this.currencyUnit[ index ] ).join('');
 	}
+	
 	convert( numStr ){
-		if( !/^\d+(\.\d+)?$/.test( numStr.trim() ) ) throw 'param is not number string';
-		const [ x='', y='' ] = numStr.split('.');
-		return this._dataIntHandle([...x]) + this._dataDeciHandle([...y]) + '整';
+		if( !/^-?\d+(\.\d+)?$/.test( numStr.trim() ) )
+			throw 'param is not number string';
+		const [ integers='', decimals='' ] = numStr.split('.');
+		return this._dataIntHandle([ ...integers ]) + this._dataDeciHandle([ ...decimals ]) + '整';
 	}
 }

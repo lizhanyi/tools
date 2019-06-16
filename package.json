@@ -2,7 +2,7 @@
   "name": "feitools",
   "version": "1.0.2",
   "description": "tools ",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,5 +19,15 @@
   "bugs": {
     "url": "https://github.com/lizhanyi/tools/issues"
   },
-  "homepage": "https://github.com/lizhanyi/tools#readme"
+  "homepage": "https://github.com/lizhanyi/tools#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^3.4.1"
+  },
+  "dependencies": {}
 }
