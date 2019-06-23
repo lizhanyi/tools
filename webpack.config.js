@@ -8,7 +8,9 @@ module.exports = {
     entry: setDirname( 'src/index.js' ),
     output: {
         path: setDirname( 'dist'),
-        filename: 'index.js'
+        filename: 'index.js',
+        // output.library和output.libraryTarget
+        library: "umd"
     },
     module: {
         rules: [{
