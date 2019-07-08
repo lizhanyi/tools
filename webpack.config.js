@@ -10,7 +10,7 @@ module.exports = {
         path: setDirname( 'dist'),
         filename: 'index.js',
         // output.library和output.libraryTarget
-        library: "umd"
+        libraryTarget: "umd"
     },
     module: {
         rules: [{
