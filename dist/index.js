@@ -82,9 +82,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__numToZh_cn__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__memory__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__timeFrame__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__URL__ = __webpack_require__(5);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NumToZh_cn", function() { return __WEBPACK_IMPORTED_MODULE_0__numToZh_cn__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Memory", function() { return __WEBPACK_IMPORTED_MODULE_1__memory__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "timeFrame", function() { return __WEBPACK_IMPORTED_MODULE_2__timeFrame__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "URL", function() { return __WEBPACK_IMPORTED_MODULE_3__URL__["a"]; });
+
 
 
 
@@ -316,6 +319,110 @@ window.cancelAnimationFrame = function () {
     window.clearTimout(id);
   };
 }();
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return URL; });
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+/**
+ * @param { cb: 每帧回调 }
+ * @param { timeStamp: 每帧时间间隔 }
+ */
+var URL =
+/*#__PURE__*/
+function () {
+  function URL() {
+    _classCallCheck(this, URL);
+  }
+
+  _createClass(URL, [{
+    key: "handle",
+    value: function handle(opt) {
+      if (opt === '') return '';
+      var opts = opt.substr(1).split('&');
+      return opts.reduce(function (preTotal, el) {
+        var _el$split = el.split('='),
+            _el$split2 = _slicedToArray(_el$split, 2),
+            key = _el$split2[0],
+            _el$split2$ = _el$split2[1],
+            value = _el$split2$ === void 0 ? '' : _el$split2$;
+
+        if (key === '') return {};
+        return _objectSpread({}, preTotal, _defineProperty({}, key, value));
+      }, null);
+    }
+  }], [{
+    key: "toJSON",
+    value: function toJSON() {
+      var _window$location = window.location,
+          search = _window$location.search,
+          protocol = _window$location.protocol,
+          pathname = _window$location.pathname,
+          port = _window$location.port,
+          hash = _window$location.hash;
+      var inst = new this();
+      return {
+        search: inst.handle(decodeURIComponent(search)),
+        hash: decodeURIComponent(hash),
+        uri: decodeURIComponent(protocol + hostname + port + pathname)
+      };
+    }
+  }, {
+    key: "reset",
+    value: function reset(opt) {
+      var _this$toJSON = this.toJSON(),
+          search = _this$toJSON.search,
+          uri = _this$toJSON.uri,
+          hash = _this$toJSON.hash;
+
+      return [uri, '?', Object.entries(_objectSpread({}, search, opt)).map(function (_ref) {
+        var _ref2 = _slicedToArray(_ref, 2),
+            key = _ref2[0],
+            value = _ref2[1];
+
+        return key + '=' + value;
+      }).join('&'), '#', hash].join('');
+    }
+  }, {
+    key: "getParam",
+    value: function getParam(mid) {
+      var onHash = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      var regExp = new RegExp("(^|&)" + mid + "=([^&]*)(&|$)");
+
+      var handle = function handle(opt) {
+        return window.location[opt].substr(1).match(regExp);
+      };
+
+      var r = handle('search') || onHash && handle('hash') || null;
+      if (r != null) return decodeURIComponent(r[2]);
+      return null;
+    }
+  }]);
+
+  return URL;
+}();
+
+
 
 /***/ })
 /******/ ]);
