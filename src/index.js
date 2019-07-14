@@ -8,6 +8,6 @@ export{
     NumToZh_cn,
     Memory,
     timeFrame,
-    URL,
+    URL, // url 重置， 参数 获取
     Type, // 数据类型检测
 }

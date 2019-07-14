@@ -454,72 +454,57 @@ function () {
   _createClass(Class2type, [{
     key: "getType",
     value: function getType(opt) {
-      return __WEBPACK_IMPORTED_MODULE_0__global__["a" /* toString */].call(opt).replace(/^\[object\s+(.+)\]$/, "$1").toLowerCase();
-    } // isFunction( param ){
-    //     return this.getType( param ) === 'function'
-    // }
-    // isNumber( param ){
-    //     return typeof param === 'number';
-    // }
-    // isArray( param ){
-    //     return this.getType( param ) === 'array';
-    // }
-
+      return __WEBPACK_IMPORTED_MODULE_0__global__["b" /* toString */].call(opt).replace(/^\[object\s+(.+)\]$/, "$1").toLowerCase();
+    }
   }, {
     key: "isEmptyObject",
     value: function isEmptyObject(param) {
       return Object.keys(param).length === 0;
-    } // isNull( param ){
-    //     return this.getType( param ) === 'null';
-    // }
-    // isString( param ){
-    //     return this.getType( param ) === 'string';
-    // }
-    // isUndefined( param ){
-    //     return this.getType( param ) === 'undefined';
-    // }
-    // isBoolean( param ){
-    //     return this.getType( param ) === 'boolean';
-    // }
-    // isArguments( param ){
-    //     return this.getType( param ) === 'arguments';
-    // }
-    // isObject( param ){
-    //     return this.getType( param ) === 'object';
-    // }
-    // isDate( param ){
-    //     return this.getType( param ) === 'date';
-    // }
-    // isRegExp(){
-    //     return this.getType( param ) === 'regexp';
-    // }
-    // isSymbol(){
-    //     return this.getType( param ) === 'symbol';
-    // }
-    // isError(){
-    //     return this.getType( param ) === 'error';
-    // }
-    // isSet(){
-    //     return this.getType( param ) === 'set';
-    // }
-    // isMap(){
-    //     return this.getType( param ) === 'map';
-    // }
-
+    }
   }]);
 
   return Class2type;
 }();
 
 
-"Boolean Number String Function Array Date RegExp Object Error Symbol Set Map".split(' ').forEach(function (item) {
-  Object.assign(Class2type.prototype, _defineProperty({}, 'is' + item, function (param) {
-    return __WEBPACK_IMPORTED_MODULE_0__global__["a" /* toString */].call(param).replace(/^\[object\s+(.+)\]$/, "$1") === item;
+__WEBPACK_IMPORTED_MODULE_0__global__["a" /* dataTypes */].forEach(function (item) {
+  Object.assign(Class2type.prototype, _defineProperty({}, 'is' + item, function (opt) {
+    return __WEBPACK_IMPORTED_MODULE_0__global__["b" /* toString */].call(opt).replace(/^\[object\s+(.+)\]$/, "$1") === item;
   }));
 });
 
 /***/ }),
 /* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constant__ = __webpack_require__(8);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__constant__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unit__ = __webpack_require__(10);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__unit__["a"]; });
+/* unused harmony reexport hasOwn */
+
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dataType__ = __webpack_require__(9);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__dataType__["a"]; });
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return dataTypes; });
+var dataTypes = ["Boolean", "Number", "String", "Function", "Array", "Date", "RegExp", "Object", "Error", "Symbol", "Set", "Map"];
+
+/***/ }),
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

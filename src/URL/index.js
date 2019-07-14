@@ -32,7 +32,7 @@ export default class URL {
         return [ 
             uri,
             '?',
-            Object.entries({ ...search, ...opt }).map(([key, value ])=> key + '=' + value ).join('&'),
+            Object.entries({ ...search, ...opt }).map(([key, value ]) => key + '=' + value ).join('&'),
             '#',
             hash
         ].join('');

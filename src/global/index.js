@@ -1,8 +1,8 @@
 export { 
     dataTypes, 
+    numRank, 
+    currencyUnit, 
+    numMapToCh 
 } from './constant';
 
-export { 
-    toString, 
-    hasOwn,
-} from './unit';
+export { toString, hasOwn } from './unit';
