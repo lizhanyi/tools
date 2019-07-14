@@ -6,17 +6,16 @@
 export default class URL {
     handle( opt ){
 
-        if( opt === '' ) return '';
+        if( opt === '' ) 
+            return '';
 
         const opts = opt.substr(1).split('&');
 
         return opts.reduce( ( preTotal, el ) => {
             const [ key, value=''] = el.split('=');
-            if( key === '' ) return {};
-            return{
-                ...preTotal,
-                [ key ]: value
-            }
+            if( key === '' ) 
+                return {};
+            return { ...preTotal,  [ key ]: value }
         }, null )
     }
     static toJSON(){
@@ -28,7 +27,7 @@ export default class URL {
             uri: decodeURIComponent( protocol + hostname + port + pathname )
         }
     }
-    static reset( opt ){
+    static set( opt ){
         const { search, uri, hash} = this.toJSON();
         return [ 
             uri,
@@ -38,7 +37,7 @@ export default class URL {
             hash
         ].join('');
     }
-    static getParam( mid, onHash=false ){
+    static get( mid, onHash=false ){
         const regExp = new RegExp("(^|&)" + mid + "=([^&]*)(&|$)");
         const handle = opt => window.location[opt].substr(1).match( regExp );
         const r = handle( 'search' ) || ( onHash && handle( 'hash' ) ) || null;

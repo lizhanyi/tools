@@ -83,10 +83,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__memory__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__timeFrame__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__URL__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__class2type__ = __webpack_require__(6);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NumToZh_cn", function() { return __WEBPACK_IMPORTED_MODULE_0__numToZh_cn__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Memory", function() { return __WEBPACK_IMPORTED_MODULE_1__memory__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "timeFrame", function() { return __WEBPACK_IMPORTED_MODULE_2__timeFrame__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "URL", function() { return __WEBPACK_IMPORTED_MODULE_3__URL__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Type", function() { return __WEBPACK_IMPORTED_MODULE_4__class2type__["a"]; });
+
 
 
 
@@ -388,8 +391,8 @@ function () {
       };
     }
   }, {
-    key: "reset",
-    value: function reset(opt) {
+    key: "set",
+    value: function set(opt) {
       var _this$toJSON = this.toJSON(),
           search = _this$toJSON.search,
           uri = _this$toJSON.uri,
@@ -404,8 +407,8 @@ function () {
       }).join('&'), '#', hash].join('');
     }
   }, {
-    key: "getParam",
-    value: function getParam(mid) {
+    key: "get",
+    value: function get(mid) {
       var onHash = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       var regExp = new RegExp("(^|&)" + mid + "=([^&]*)(&|$)");
 
@@ -422,6 +425,108 @@ function () {
   return URL;
 }();
 
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Class2type; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(7);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Class2type =
+/*#__PURE__*/
+function () {
+  function Class2type() {
+    _classCallCheck(this, Class2type);
+  }
+
+  _createClass(Class2type, [{
+    key: "getType",
+    value: function getType(opt) {
+      return __WEBPACK_IMPORTED_MODULE_0__global__["a" /* toString */].call(opt).replace(/^\[object\s+(.+)\]$/, "$1").toLowerCase();
+    } // isFunction( param ){
+    //     return this.getType( param ) === 'function'
+    // }
+    // isNumber( param ){
+    //     return typeof param === 'number';
+    // }
+    // isArray( param ){
+    //     return this.getType( param ) === 'array';
+    // }
+
+  }, {
+    key: "isEmptyObject",
+    value: function isEmptyObject(param) {
+      return Object.keys(param).length === 0;
+    } // isNull( param ){
+    //     return this.getType( param ) === 'null';
+    // }
+    // isString( param ){
+    //     return this.getType( param ) === 'string';
+    // }
+    // isUndefined( param ){
+    //     return this.getType( param ) === 'undefined';
+    // }
+    // isBoolean( param ){
+    //     return this.getType( param ) === 'boolean';
+    // }
+    // isArguments( param ){
+    //     return this.getType( param ) === 'arguments';
+    // }
+    // isObject( param ){
+    //     return this.getType( param ) === 'object';
+    // }
+    // isDate( param ){
+    //     return this.getType( param ) === 'date';
+    // }
+    // isRegExp(){
+    //     return this.getType( param ) === 'regexp';
+    // }
+    // isSymbol(){
+    //     return this.getType( param ) === 'symbol';
+    // }
+    // isError(){
+    //     return this.getType( param ) === 'error';
+    // }
+    // isSet(){
+    //     return this.getType( param ) === 'set';
+    // }
+    // isMap(){
+    //     return this.getType( param ) === 'map';
+    // }
+
+  }]);
+
+  return Class2type;
+}();
+
+
+"Boolean Number String Function Array Date RegExp Object Error Symbol Set Map".split(' ').forEach(function (item) {
+  Object.assign(Class2type.prototype, _defineProperty({}, 'is' + item, function (param) {
+    return __WEBPACK_IMPORTED_MODULE_0__global__["a" /* toString */].call(param).replace(/^\[object\s+(.+)\]$/, "$1") === item;
+  }));
+});
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return toString; });
+/* unused harmony export hasOwn */
+var toString = Object.prototype.toString;
+var hasOwn = Object.prototype.hasOwnProperty;
 
 
 /***/ })
