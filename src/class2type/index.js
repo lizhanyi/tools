@@ -13,7 +13,7 @@ class Class2type{
 dataTypes.forEach( item => {
     Object.assign( Class2type.prototype, {
         ['is'+ item ]( opt ){
-            return ( new Class2type() ).getType() === item;
+            return ( new Class2type() ).getType( opt ) === item;
         }
     })
 });

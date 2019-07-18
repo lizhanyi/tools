@@ -1,6 +1,6 @@
 {
   "name": "feitools",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "tools ",
   "main": "dist/index.js",
   "scripts": {
