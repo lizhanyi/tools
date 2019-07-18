@@ -4,7 +4,7 @@
 */
 export default class Memory{
     static clear( type="local"){
-        this.map[ type ].clear()
+        new this().map[ type ].clear()
     }
     constructor( key, type ){
         this.key = key;
