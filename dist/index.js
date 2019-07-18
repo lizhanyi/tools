@@ -161,7 +161,7 @@ function () {
   _createClass(NumToZh_cn, [{
     key: "_test",
     value: function _test(arr, item, index) {
-      var unit = this.numLevel[arr.length - index - 1];
+      var unit = this.numRank[arr.length - index - 1];
       return item === '0' ? /万|亿/.test(unit) ? unit : '零' : this.numMapToCh[item] + unit;
     }
   }, {
@@ -178,14 +178,18 @@ function () {
     value: function _dataDeciHandle(arr) {
       var _this2 = this;
 
-      return arr.map(function (item, index) {
+      if (arr.length > 2) {
+        console.warn('系统仅保留两位小数，多余部分被忽略');
+      }
+
+      return arr.slice(0, 2).map(function (item, index) {
         return item === '0' ? '' : _this2.numMapToCh[item] + _this2.currencyUnit[index];
       }).join('');
     }
   }, {
-    key: "convert",
-    value: function convert(numStr) {
-      if (!/^-?\d+(\.\d+)?$/.test(numStr.trim())) throw 'param is not number string';
+    key: "toZh",
+    value: function toZh(numStr) {
+      if (!/^-?\d+(\.\d+)?$/.test(('' + numStr).trim())) throw 'param is not number string';
 
       var _numStr$split = numStr.split('.'),
           _numStr$split2 = _slicedToArray(_numStr$split, 2),
@@ -531,7 +535,7 @@ function () {
 
 __WEBPACK_IMPORTED_MODULE_0__global__["b" /* dataTypes */].forEach(function (item) {
   Object.assign(Class2type.prototype, _defineProperty({}, 'is' + item, function (opt) {
-    return new Class2type().getType() === item;
+    return new Class2type().getType(opt) === item;
   }));
 });
 /* harmony default export */ __webpack_exports__["a"] = (Class2type);
