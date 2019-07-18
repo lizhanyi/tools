@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -78,12 +78,28 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constant__ = __webpack_require__(3);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__constant__["b"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_0__constant__["d"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__constant__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_0__constant__["c"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unit__ = __webpack_require__(6);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_1__unit__["a"]; });
+/* unused harmony reexport hasOwn */
+
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__numToZh_cn__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__memory__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__timeFrame__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__URL__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__class2type__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__numToZh_cn__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__memory__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__timeFrame__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__URL__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__class2type__ = __webpack_require__(11);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NumToZh_cn", function() { return __WEBPACK_IMPORTED_MODULE_0__numToZh_cn__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Memory", function() { return __WEBPACK_IMPORTED_MODULE_1__memory__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "timeFrame", function() { return __WEBPACK_IMPORTED_MODULE_2__timeFrame__["a"]; });
@@ -97,11 +113,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NumToZh_cn; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(0);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -126,38 +143,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+
+
 var NumToZh_cn =
 /*#__PURE__*/
 function () {
   function NumToZh_cn() {
     _classCallCheck(this, NumToZh_cn);
 
-    _defineProperty(this, "numLevel", ["", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿"]);
+    _defineProperty(this, "numRank", __WEBPACK_IMPORTED_MODULE_0__global__["d" /* numRank */]);
 
-    _defineProperty(this, "currencyUnit", ['角', '分']);
+    _defineProperty(this, "currencyUnit", __WEBPACK_IMPORTED_MODULE_0__global__["a" /* currencyUnit */]);
 
-    _defineProperty(this, "numMapToCh", {
-      '0': '零',
-      '1': '壹',
-      '2': '贰',
-      '3': '叁',
-      '4': '肆',
-      '5': '伍',
-      '6': '陆',
-      '7': '柒',
-      '8': '捌',
-      '9': '玖',
-      '０': '零',
-      '１': '壹',
-      '２': '贰',
-      '３': '叁',
-      '４': '肆',
-      '５': '伍',
-      '６': '陆',
-      '７': '柒',
-      '８': '捌',
-      '９': '玖'
-    });
+    _defineProperty(this, "numMapToCh", __WEBPACK_IMPORTED_MODULE_0__global__["c" /* numMapToCh */]);
   }
 
   _createClass(NumToZh_cn, [{
@@ -206,7 +204,73 @@ function () {
 
 
 /***/ }),
-/* 2 */
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dataType__ = __webpack_require__(4);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__dataType__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__numToZh_cn__ = __webpack_require__(5);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_1__numToZh_cn__["c"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__numToZh_cn__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_1__numToZh_cn__["b"]; });
+
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return dataTypes; });
+var dataTypes = ["Boolean", "Number", "String", "Function", "Array", "Date", "RegExp", "Object", "Error", "Symbol", "Set", "Map"];
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return numRank; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return currencyUnit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return numMapToCh; });
+var numRank = ["", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿"];
+var currencyUnit = ['角', '分'];
+var numMapToCh = {
+  '0': '零',
+  '1': '壹',
+  '2': '贰',
+  '3': '叁',
+  '4': '肆',
+  '5': '伍',
+  '6': '陆',
+  '7': '柒',
+  '8': '捌',
+  '9': '玖',
+  '０': '零',
+  '１': '壹',
+  '２': '贰',
+  '３': '叁',
+  '４': '肆',
+  '５': '伍',
+  '６': '陆',
+  '７': '柒',
+  '８': '捌',
+  '９': '玖'
+};
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return toString; });
+/* unused harmony export hasOwn */
+var toString = Object.prototype.toString;
+var hasOwn = Object.prototype.hasOwnProperty;
+
+
+/***/ }),
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -276,11 +340,11 @@ function () {
 
 
 /***/ }),
-/* 3 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__animationFrame__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__animationFrame__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__animationFrame___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__animationFrame__);
 /**
  * @param { cb: 每帧回调 }
@@ -308,7 +372,7 @@ function () {
 });
 
 /***/ }),
-/* 4 */
+/* 9 */
 /***/ (function(module, exports) {
 
 window.requestAnimFrame = function () {
@@ -324,12 +388,14 @@ window.cancelAnimationFrame = function () {
 }();
 
 /***/ }),
-/* 5 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return URL; });
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -398,7 +464,7 @@ function () {
           uri = _this$toJSON.uri,
           hash = _this$toJSON.hash;
 
-      return [uri, '?', Object.entries(_objectSpread({}, search, opt)).map(function (_ref) {
+      return [uri, '?', Object.entries(_objectSpread({}, search, {}, opt)).map(function (_ref) {
         var _ref2 = _slicedToArray(_ref, 2),
             key = _ref2[0],
             value = _ref2[1];
@@ -428,12 +494,11 @@ function () {
 
 
 /***/ }),
-/* 6 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Class2type; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(0);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -454,7 +519,7 @@ function () {
   _createClass(Class2type, [{
     key: "getType",
     value: function getType(opt) {
-      return __WEBPACK_IMPORTED_MODULE_0__global__["b" /* toString */].call(opt).replace(/^\[object\s+(.+)\]$/, "$1").toLowerCase();
+      return __WEBPACK_IMPORTED_MODULE_0__global__["e" /* toString */].call(opt).replace(/^\[object\s+(.+)\]$/, "$1");
     }
   }, {
     key: "isEmptyObject",
@@ -466,53 +531,12 @@ function () {
   return Class2type;
 }();
 
-
-__WEBPACK_IMPORTED_MODULE_0__global__["a" /* dataTypes */].forEach(function (item) {
+__WEBPACK_IMPORTED_MODULE_0__global__["b" /* dataTypes */].forEach(function (item) {
   Object.assign(Class2type.prototype, _defineProperty({}, 'is' + item, function (opt) {
-    return __WEBPACK_IMPORTED_MODULE_0__global__["b" /* toString */].call(opt).replace(/^\[object\s+(.+)\]$/, "$1") === item;
+    return new Class2type().getType() === item;
   }));
 });
-
-/***/ }),
-/* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constant__ = __webpack_require__(8);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__constant__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unit__ = __webpack_require__(10);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__unit__["a"]; });
-/* unused harmony reexport hasOwn */
-
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dataType__ = __webpack_require__(9);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__dataType__["a"]; });
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return dataTypes; });
-var dataTypes = ["Boolean", "Number", "String", "Function", "Array", "Date", "RegExp", "Object", "Error", "Symbol", "Set", "Map"];
-
-/***/ }),
-/* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return toString; });
-/* unused harmony export hasOwn */
-var toString = Object.prototype.toString;
-var hasOwn = Object.prototype.hasOwnProperty;
-
+/* harmony default export */ __webpack_exports__["a"] = (Class2type);
 
 /***/ })
 /******/ ]);
