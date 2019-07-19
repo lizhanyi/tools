@@ -61,7 +61,7 @@ export default class Memory{
 
 
     /**
-     * 内部方法
+     * 内部方法( 不建议调用 )
      * type: 存储类型， key: 数据的键 
      */
     _getIntance( type, key ){
@@ -73,7 +73,7 @@ export default class Memory{
         if( values.length !== 0 && values.includes( key ) ){
             throw 'key is not only key, Memory need a only key, please check code'
         }
-        
+
         this.constructor.instances = { 
             ...instances,
             [ type ]: [ ...values, key ]
@@ -98,13 +98,17 @@ export default class Memory{
     /**
      * 批量删除 存储数据
      */
-    static removeItems(){
-
+    static removeItems( keys=[] ){
+        (
+            !Array.isArray( keys ) ? keys.split(',') : keys 
+        ).forEach( item => {
+            Object.values( new this().map ).removeItem( item )
+        });
     }
 
 
     /**
-     * 获取存储 亿存储数据的 key 值
+     * 获取存储 与存储数据的 key 值
      */
     static keys(){
         return Object.entries( new this().map ).map( ([ key, value ]) => ({ 
@@ -113,3 +117,7 @@ export default class Memory{
         );
     }
 }
+
+
+
+
