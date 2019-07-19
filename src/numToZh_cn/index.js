@@ -1,4 +1,4 @@
-import { numRank, currencyUnit, numMapToCh } from '../global'
+import { numRank, currencyUnit, numMapToCh } from './constant';
 
 export default class NumToZh_cn {
 

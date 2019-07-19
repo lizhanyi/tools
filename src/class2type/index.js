@@ -1,5 +1,6 @@
 
-import { dataTypes, toString } from '../global';
+import { toString } from './../unit';
+import { dataTypes } from './constant';
 
 class Class2type{ 
     getType( opt ){

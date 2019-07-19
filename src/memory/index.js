@@ -3,9 +3,6 @@
  * @param { type: 存储类型 local => localStorage, session => sessionStorage  }
 */
 export default class Memory{
-    static clear( type="local"){
-        new this().map[ type ].clear()
-    }
     constructor( key, type ){
         this.key = key;
         this.type = type;
@@ -27,6 +24,23 @@ export default class Memory{
     }
     getKey(){
         return this.key in this.map[ this.type ];
+    }
+
+    static clear( type="local"){
+        new this().map[ type ].clear()
+    }
+
+    // 删除 指定键值得数据
+    static removeItems(){
+
+    }
+    
+    // 获取 存储的 key 值
+    static keys(){
+        return {
+            local: [],
+            session: [],
+        }
     }
 }
 
