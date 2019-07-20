@@ -19,14 +19,20 @@ npm i feitools -S or yarn add feitools
   import { Memory } from 'feitools';
   /**
    * 建议实例化对象 名 与存储的键同名
-   * 实例接收2个参数
-   * @param { key: 存储的键， type: 存储的类型, session或local }
-   *
-   * @param { @func getItem: 获取存储数据 } 
-   * @param { @func setItem: 设置存储数据, @param value: 带存储的值 } 
-   * @param { @func getKey: 检查是否存在 } 
-   * @param { @func removeItem: 删除存储数据 }
-   * @param { @func clear: 静态方法, @param type: session或local } 
+   * 1. 构造函数，key: 构造函数的键， type: 数据存储的类型，session或local
+   * 2. 实例属性和方法
+   *     (1) map: 属性，存储类型映射
+   *     (2) setItem( value ): 设置存储数据，value: 任意参数类型。无返回值
+   *     (3) getItem(): 获取存储数据的值，无参数， 返回值为存储时的数据
+   *     (4) getKey(): 检查存储键值是否存在，返回值布尔类型
+   *     (5) removeItem(): 删除单条存储数据，无返回值
+   *     (6) _getIntance(): 内部方法， 不建议使用，会造成实例数据异常
+   * 3. 静态方法
+   *     (1) instances：实例对象
+   *     (2) keys(): 获取存储数据的键值， 无参数， 返回获取的结果
+   *     (3) removeItems(keys=[]): 删除指定键的存储，不区分存储类型，keys: 以","隔开的字符串或数组， 无返回值。
+   *     (4) clear(type="local"): 清空指定类型的存储，type: 存储类型，无返回值
+   *     (5) clearAll(): 清空所有存储， 无返回值
   */
   const userInfo = new Memory('userInfo', 'local'); // 实例化一个 localStorage存储
 

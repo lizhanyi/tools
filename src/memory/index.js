@@ -124,7 +124,6 @@ export default class Memory{
                 item.removeItem( key );
            })
         })
-        return this.keys();
     }
 
 
