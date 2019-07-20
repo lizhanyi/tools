@@ -2,10 +2,12 @@
  * @param { key: 存储的键  }
  * @param { type: 存储类型 local => localStorage, session => sessionStorage  }
 */
+import { isUndefined } from './../class2type';
 export default class Memory{
 
     /**
      *Creates an instance of Memory.
+     *
      * @param { 存储的键 } key
      * @param { 存储类型 } type
      * @memberof Memory
@@ -13,7 +15,7 @@ export default class Memory{
     constructor( key, type ){
         this.key = key;
         this.type = type;
-        this._getIntance( type, key );
+        this._getIntance( type, key, this );
     }
 
 
@@ -38,9 +40,7 @@ export default class Memory{
      * 获取 存储的值
      */
     getItem(){
-        if( this.getKey() ){
-            return JSON.parse( this.map[ this.type ].getItem( this.key ) );
-        }
+        return this.getKey() &&  JSON.parse( this.map[ this.type ].getItem( this.key ) );
     }
 
 
@@ -61,17 +61,25 @@ export default class Memory{
 
 
     /**
-     * 内部方法( 不建议调用 )
+     * 存储实例对象， 内部方法( 不建议调用 )
      * type: 存储类型， key: 数据的键 
      */
-    _getIntance( type, key ){
+    _getIntance( type, key, that ){
+
+        if( that.constructor !== Memory ){
+            throw 'not allowed, this is a internal method!'
+        }
+
+        // 静态方法初始化时，会自动执行， 增加判断处理
+        
+        if( isUndefined( type ) ) return;
 
         const { instances } = this.constructor;
 
         const values = instances[ type ] || [];
 
         if( values.length !== 0 && values.includes( key ) ){
-            throw 'key is not only key, Memory need a only key, please check code'
+            throw 'Key is repeated, Memory need a only key, please check code!'
         }
 
         this.constructor.instances = { 
@@ -91,19 +99,32 @@ export default class Memory{
      * 清除空指定类型的数据
      */
     static clear( type="local"){
-        new this().map[ type ].clear()
+        new this().map[ type ].clear();
     }
 
 
     /**
-     * 批量删除 存储数据
+     * 清空所有数据
+     */
+    static clearAll(){
+        this.clear('local');
+        this.clear('session');
+    }
+
+
+    /**
+     * 批量删除 存储数据， 自动遍历所有存储, 返回剩余存储
      */
     static removeItems( keys=[] ){
-        (
+
+        ( 
             !Array.isArray( keys ) ? keys.split(',') : keys 
-        ).forEach( item => {
-            Object.values( new this().map ).removeItem( item )
-        });
+        ).forEach( key => {
+           Object.values( new this().map ).forEach( item => {
+                item.removeItem( key );
+           })
+        })
+        return this.keys();
     }
 
 
@@ -117,7 +138,3 @@ export default class Memory{
         );
     }
 }
-
-
-
-

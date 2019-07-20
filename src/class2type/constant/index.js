@@ -10,5 +10,6 @@ export const dataTypes = [
     "Error",
     "Symbol",
     "Set",
-    "Map"
+    "Map",
+    "Undefined"
 ]
