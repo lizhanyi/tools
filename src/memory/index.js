@@ -3,6 +3,7 @@
  * @param { type: 存储类型 local => localStorage, session => sessionStorage  }
 */
 import { isUndefined } from './../class2type';
+
 export default class Memory{
 
     /**
@@ -118,7 +119,7 @@ export default class Memory{
     static removeItems( keys=[] ){
 
         ( 
-            !Array.isArray( keys ) ? keys.split(',') : keys 
+            !Array.isArray( keys ) ? keys.split(/\W+/g) : keys 
         ).forEach( key => {
            Object.values( new this().map ).forEach( item => {
                 item.removeItem( key );

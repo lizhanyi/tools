@@ -26,10 +26,13 @@ import { dataTypes } from './constant';
     }
 }
 
+/**
+ * 实例化 
+ */
 const class2type = new Class2type();
 
 /**
- * 给原型 扩展方法
+ * 扩展原型方法
  */
 class2type.dataTypes.forEach( item => {
     Object.assign( Class2type.prototype, {
@@ -45,7 +48,6 @@ export default Class2type;
 export { 
     class2type
 };
-
 
 export const { 
     isBoolean, 
