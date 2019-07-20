@@ -11,5 +11,6 @@ export const dataTypes = [
     "Symbol",
     "Set",
     "Map",
-    "Undefined"
+    "Undefined",
+    "Null"
 ]

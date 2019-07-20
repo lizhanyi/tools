@@ -63,4 +63,5 @@ export const {
     isSet,
     isMap,
     isUndefined,
+    isNull
 } = class2type;
