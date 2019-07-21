@@ -26,17 +26,7 @@ module.exports = {
                 // ]
                 options: {
                     plugins:[ '@babel/plugin-proposal-class-properties' ],
-                    presets: [ '@babel/env', {
-                            "targets": {
-                            //   "esmodules": true
-                            },
-                            "browserslist": [
-                                "last 2 version",
-                                "> 1%",
-                                "not ie <= 8"
-                            ]
-                            
-                    } ]
+                    presets: [ '@babel/env']
                 }
             }
         }]
