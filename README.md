@@ -34,9 +34,9 @@ const userInfo = new Memory('userInfo', 'local');
 
 // 存储数据
 userInfo.setItem({ 
-	age: '10', 
-	name: 'name', 
-	userId: '123456' 
+   age: '10', 
+   name: 'name', 
+   userId: '123456' 
 });
 
 // 获取存储数据信息
@@ -120,6 +120,8 @@ import {
     isBoolean, 
     isNumber, 
     isString,
+    isUndefined,
+    isNull,
     isFunction,
     isArray,
     isDate,
@@ -129,8 +131,7 @@ import {
     isSymbol,
     isSet,
     isMap,
-	isUndefined,
-	isNull 
+    isPromise,
 } from 'feitools';
 
 isBoolean( true ); // true
@@ -138,6 +139,10 @@ isBoolean( true ); // true
 isNumber( 12 ); // true
 
 isString( 'feitools' ); // true
+
+isUndefined( undefined ); // true
+
+isNull( null ); // true
 
 isFunction( ()=>{} ); // true
 
@@ -157,9 +162,6 @@ isSet( new Set(['feitools'])); // true
 
 isMap( new Map( [ [ 'tool', 'feitools' ] ] ) ); // true
 
-isUndefined( undefined ); // true
-
-isNull( null ); // true
 ```
 
 #### timeFrame: 时间帧

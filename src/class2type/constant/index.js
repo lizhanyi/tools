@@ -2,6 +2,8 @@ export const dataTypes = [
     "Boolean", 
     "Number", 
     "String",
+    "Undefined",
+    "Null",
     "Function",
     "Array",
     "Date",
@@ -11,6 +13,5 @@ export const dataTypes = [
     "Symbol",
     "Set",
     "Map",
-    "Undefined",
-    "Null"
+    "Promise",
 ]

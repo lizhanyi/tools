@@ -11,9 +11,17 @@ export default class Memory{
      *
      * @param { 存储的键 } key
      * @param { 存储类型 } type
-     * @memberof Memory
      */
     constructor( key, type ){
+
+        const hasSpace = /\s+/.test( key );
+
+        const hasSpecialChar = /\W+/.test( key );
+
+        if(  hasSpecialChar &&  hasSpace ){
+            throw 'key must be a /w+/ and not space';
+        }
+
         this.key = key;
         this.type = type;
         this._getIntance( type, key, this );
@@ -80,7 +88,7 @@ export default class Memory{
         const values = instances[ type ] || [];
 
         if( values.length !== 0 && values.includes( key ) ){
-            throw 'Key is repeated, Memory need a only key, please check code!'
+            throw ` Memory need a only key, the ${key} is existed, please check code!`
         }
 
         this.constructor.instances = { 
@@ -120,6 +128,7 @@ export default class Memory{
 
         ( 
             !Array.isArray( keys ) ? keys.split(/\W+/g) : keys 
+
         ).forEach( key => {
            Object.values( new this().map ).forEach( item => {
                 item.removeItem( key );
@@ -133,7 +142,7 @@ export default class Memory{
      */
     static keys(){
         return Object.entries( new this().map ).map( ([ key, value ]) => ({ 
-                [ key ]: new Array( value.length ).fill('').map( (item, index ) => value.key(index) )   
+                [ key ]: new Array( value.length ).fill( '' ).map( ( item, index ) => value.key( index ) )   
             })
         );
     }

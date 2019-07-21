@@ -28,12 +28,17 @@ export default function( cb = ()=>{}, timeStamp ){
      * 核心函数 
      */
     let timer = requestAnimationFrame(function(){
+
         cur = Date.now();
+
         if( cur - prev > timeStamp ){
             cb( prev, cur, origin ); 
             prev = cur;
         }
+
         timer && cancelAnimationFrame( timer );
+
         timer = requestAnimationFrame( arguments.callee );
+        
     });
 }

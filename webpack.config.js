@@ -1,13 +1,15 @@
 const path = require( 'path' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
+// hot-module-replacement
+// webpack.HotModuleReplacementPlugin
 
-const setDirname = dirname =>  path.resolve( __dirname, dirname );
+const resolve = dirname =>  path.resolve( __dirname, dirname );
 
 module.exports = {
-    entry: setDirname( 'src/index.js' ),
+    entry: resolve( 'src/index.js' ),
     output: {
-        path: setDirname( 'dist'),
+        path: resolve( 'dist'),
         filename: 'index.js',
         // output.library和output.libraryTarget
         libraryTarget: "umd"
@@ -16,12 +18,25 @@ module.exports = {
         rules: [{
             test: /\.js$/,
             exclude: /(node_modules|bower_components)/,
-            include: setDirname( 'src' ), // 只处理 src 目录下的文件
+            include: resolve( 'src' ), // 只处理 src 目录下的文件
             use: {
                 loader: 'babel-loader',
+                // presets:[
+                //     "es2015","react"
+                // ]
                 options: {
                     plugins:[ '@babel/plugin-proposal-class-properties' ],
-                    presets: [ '@babel/env' ]
+                    presets: [ '@babel/env', {
+                            "targets": {
+                            //   "esmodules": true
+                            },
+                            "browserslist": [
+                                "last 2 version",
+                                "> 1%",
+                                "not ie <= 8"
+                            ]
+                            
+                    } ]
                 }
             }
         }]
@@ -32,10 +47,25 @@ module.exports = {
             template: './index.html',
             inject : 'body', // 制定 js 被插入的位置
             title: 'feitools',
-            // minify : { // 压缩模板
-			// 	removeComments : true, // 删除注释
-			// 	collapseWhitespace : true, // 删除空格
-			// }
+            minify : { // 压缩模板
+				removeComments : true, // 删除注释
+				collapseWhitespace : true, // 删除空格
+			}
         }),
     ],
+    // 配置服务器
+	devServer : {
+		open : false,
+        port : 8081,
+        compress: true,
+        lazy: true,
+        quiet: true, // 信息是否展示 在 控制台
+        overlay: { 
+            warnings: true, 
+            errors: true,
+        },
+        // host: 'http://www.feitools.com',
+        // hot: true,
+        inline: true,
+	}
 };

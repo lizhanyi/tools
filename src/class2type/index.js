@@ -53,6 +53,8 @@ export const {
     isBoolean, 
     isNumber, 
     isString,
+    isUndefined,
+    isNull,
     isFunction,
     isArray,
     isDate,
@@ -62,6 +64,5 @@ export const {
     isSymbol,
     isSet,
     isMap,
-    isUndefined,
-    isNull
+    isPromise,
 } = class2type;
