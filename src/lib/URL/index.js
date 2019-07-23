@@ -1,4 +1,4 @@
-import { isObject } from './../class2type';
+import { isObject } from '../class2type';
 
 export default class URL {
 
@@ -15,7 +15,7 @@ export default class URL {
 
         return opts.reduce( ( preTotal, el ) => {
 
-            const [ key, value=''] = el.split('=');
+            const [ key, value='' ] = el.split( '=' );
 
             return key === '' ? {} : { ...preTotal,  [ key ]: value }
 
@@ -44,7 +44,7 @@ export default class URL {
 
     /**
      * 功能：重置 url
-     * 参数：opt, json 对象
+     * 参数：opt, json 对象, 返回 url
      */
     static set( opt ){
 
@@ -54,14 +54,12 @@ export default class URL {
 
         const { search, uri, hash } = this.toJSON();
 
-        const newUrl = [ 
+        return [ 
             uri,
             '?',
-            Object.entries({ ...search, ...opt }).map(([key, value ]) => key + '=' + value ).join('&'),
+            Object.entries({ ...search, ...opt }).map( ([ key, value ]) => key + '=' + value ).join( '&' ),
             hash
         ].join('');
-
-        window.location.href = newUrl;
     }
 
 
@@ -74,7 +72,7 @@ export default class URL {
 
         const regExp = new RegExp("(^|&)" + mid + "=([^&]*)(&|$)");
 
-        const handle = opt => window.location[opt].substr(1).match( regExp );
+        const handle = opt => window.location[ opt ].substr(1).match( regExp );
 
         const r = handle( 'search' ) || ( onHash && handle( 'hash' ) ) || null;
 

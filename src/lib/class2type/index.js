@@ -1,5 +1,5 @@
 
-import { toString } from './../unit';
+import { toString } from '../unit';
 import { dataTypes } from './constant';
 
  class Class2type{ 

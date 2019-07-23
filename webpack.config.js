@@ -7,9 +7,9 @@ const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 const resolve = dirname =>  path.resolve( __dirname, dirname );
 
 module.exports = {
-    entry: resolve( 'src/index.js' ),
+    entry: resolve( 'src/main.js' ),
     output: {
-        path: resolve( 'dist'),
+        path: resolve( 'dist' ),
         filename: 'index.js',
         // output.library和output.libraryTarget
         libraryTarget: "umd"
@@ -47,9 +47,9 @@ module.exports = {
 	devServer : {
 		open : false,
         port : 8081,
-        compress: true,
-        lazy: true,
-        quiet: true, // 信息是否展示 在 控制台
+        // compress: true,
+        // lazy: true,
+        // quiet: true, // 信息是否展示 在 控制台
         overlay: { 
             warnings: true, 
             errors: true,

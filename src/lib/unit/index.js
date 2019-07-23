@@ -5,5 +5,5 @@ const hasOwn = Object.prototype.hasOwnProperty;
 
 export {
     toString, // 
-    hasOwn, 
+    hasOwn,
 }

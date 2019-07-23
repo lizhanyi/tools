@@ -90,7 +90,7 @@ numtozh_cn.toZh(15.22); // 十五元贰角贰分整
 ```javascript
 /*
 * 1. 静态方法
-*   (1) set(opt ): 功能，重置url，返回值：无，参数，json
+*   (1) set(opt ): 功能，重置url，返回值：处理后的url，参数，json
 *   (2) get( mid, onHash=false)： 功能：获取 url 参数值，返回值，字符串
 */
 
