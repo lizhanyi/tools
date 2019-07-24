@@ -1,7 +1,7 @@
 
 feitools
 =============================================================
-工具函数，提供一些常用的工具方法，项目使用 es6 语法开发，后期会更新成 ts 开发
+工具库，提供一些常用的工具方法，项目使用 es6 语法开发，后期会更新成 ts 开发
 ### 安装
 ```
 npm i feitools -S or yarn add feitools
@@ -15,7 +15,7 @@ npm i feitools -S or yarn add feitools
 * 建议实例化对象 名 与存储的键同名，键 满足 \W+ 规则
 * 1. 构造函数，key: 构造函数的键， type: 数据存储的类型，session或local
 * 2. 实例属性和方法
-*   (1) setItem( value ): 设置存储数据，value: 任意参数类型。无返回值
+*   (1) setItem( value, replacer ): 设置存储数据，value: 任意参数类型,replacer,数据筛选与JSON.stringify一致。无返回值
 *   (2) getItem(): 获取存储数据的值，无参数， 返回值为存储时的数据
 *   (3) getKey(): 检查存储键值是否存在，返回值布尔类型
 *   (4) removeItem(): 删除单条存储数据，无返回值
@@ -96,7 +96,7 @@ numtozh_cn.toZh(15.22); // 十五元贰角贰分整
 
 import { URL } from 'feitools';
 
-const url = '?name=a&age=20#sex=m' // 预测 url 地址
+const url = '?name=a&age=20#sex=m' // 假设 url 地址
 
 URL.get('name'); // a
 
@@ -173,6 +173,22 @@ timeFrame( ( prev, cur, origin ) => {
 	console.log('Running after 1s')
 }, 1000 ); 
 
+```
+
+#### SuperDate: 超级日期( 目标：打造方便的日期处理 )
+```javascript
+/*
+* 1. 实例方法
+*   (1) getMaxDay( year, month ): 获取当前月的天数
+*   (2) format(): 分割日期，目前只实现 2019-7-25(推荐)和2019/7/25，后期实现个性定制格式
+*   (3) now(): 获取当前时间
+*   (4) add( num, type ): 增加时间， 目前仅实现 type=year
+*/
+import { SuperDate } from 'feitools';
+
+const superDate = new SuperDate('2019-7-25'); 
+
+superDate.add( 10, 'year' ) // 2029-7-25
 ```
 
 # m

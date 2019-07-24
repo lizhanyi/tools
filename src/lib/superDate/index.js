@@ -64,9 +64,8 @@ export default class SuperDate{
 
         if( type === 'year' ){
 
-            if( day > maxDays ){
-                day = maxDays;
-            }
+            // 当前日期
+            day = day > maxDays ? maxDays : day;
             
             if( day === 1 ){ // 当前月的 1 号
 
