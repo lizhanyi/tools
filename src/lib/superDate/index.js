@@ -28,7 +28,7 @@ export default class SuperDate{
     format(){
         let [ year, month, day ] = this.date.split(/-|\//g);
 
-        const maxDays = this.getEachMonthDays( year, month );
+        const maxDays = this.getMaxDay( year, month );
 
         // 当前天数大于 最大天数
         if(  day > maxDays ){
@@ -85,7 +85,7 @@ export default class SuperDate{
             ].join( '-' );
         }
     }
-    
+
 
     /**
      * 功能： 日期减法处理
