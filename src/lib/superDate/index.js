@@ -14,11 +14,13 @@ export default class SuperDate{
     }
 
 
-
-
+    /**
+     * 获取 当前时间
+     */
     now(){
         return Date.now();
     }
+
 
     /**
      * 日期格式化
@@ -83,6 +85,7 @@ export default class SuperDate{
             ].join( '-' );
         }
     }
+    
 
     /**
      * 功能： 日期减法处理
