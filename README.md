@@ -96,7 +96,7 @@ numtozh_cn.toZh(15.22); // 十五元贰角贰分整
 
 import { URL } from 'feitools';
 
-const url = '?name=a&age=20#sex=m' // 预测 url 地址
+const url = '?name=a&age=20#sex=m' // 假设 url 地址
 
 URL.get('name'); // a
 
@@ -173,6 +173,22 @@ timeFrame( ( prev, cur, origin ) => {
 	console.log('Running after 1s')
 }, 1000 ); 
 
+```
+
+#### SuperDate: 超级日期( 目标：打造方便的日期处理 )
+```javascript
+/*
+* 1. 实例方法
+*   (1) getMaxDay( year, month ): 获取当前月的天数
+*   (2) format(): 分割日期，目前只实现 2019-7-25(推荐)和2019/7/25，后期实现个性定制格式
+*   (3) now(): 获取当前时间
+*   (4) add( num, type ): 增加时间， 目前仅实现 type=year
+*/
+import { SuperDate } from 'feitools';
+
+const superDate = new SuperDate('2019-7-25'); 
+
+superDate.add( 10, 'year' ) // 2029-7-25
 ```
 
 # m
