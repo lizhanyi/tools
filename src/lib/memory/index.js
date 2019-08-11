@@ -20,17 +20,18 @@ export default class Memory{
 
         this._getIntance( type, key, this );
 
+        /**
+         * 存储类型 映射
+         */
+
+        this.__proto__.map = {
+            'session': window.sessionStorage,
+            'local': window.localStorage
+        }
+
     }
 
-
-    /**
-     * 存储类型 映射
-     */
-    map = {
-        'session': window.sessionStorage,
-        'local': window.localStorage
-    }
-
+    
     
     /**
      * 存储数据， value 数据

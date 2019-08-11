@@ -15,7 +15,8 @@ npm i feitools -S or yarn add feitools
 * 建议实例化对象 名 与存储的键同名，键 满足 \W+ 规则
 * 1. 构造函数，key: 构造函数的键， type: 数据存储的类型，session或local
 * 2. 实例属性和方法
-*   (1) setItem( value, replacer ): 设置存储数据，value: 任意参数类型,replacer,数据筛选与JSON.stringify一致。无返回值
+*   (1) setItem( value, replacer ): 设置存储数据
+*       value: 任意参数类型，replacer，数据筛选与 JSON.stringify 一致。无返回值
 *   (2) getItem(): 获取存储数据的值，无参数， 返回值为存储时的数据
 *   (3) getKey(): 检查存储键值是否存在，返回值布尔类型
 *   (4) removeItem(): 删除单条存储数据，无返回值
@@ -107,16 +108,16 @@ URL.get('sex', true ); // m
 URL.set({ name: 'h', email: '163' }); //'?name=h&email=163&age=20#sex=m'
 
 ```
-##### class2type: 类型检测
+##### Class2type: 类型检测
 ```javascript
 /*
 *  
 * 1. 实例方法
 *   (1) getType( opt ): 核心方法
-* 	(2) isEmptyObject( param ): 检测 json 是否为空 
+*   (2) isEmptyObject( param ): 检测 json 是否为空 
 */
-
-import { 
+class2type = new Class2type();
+const {
     isBoolean, 
     isNumber, 
     isString,
@@ -131,8 +132,9 @@ import {
     isSymbol,
     isSet,
     isMap,
-    isPromise,
-} from 'feitools';
+    isPromise
+} = class2type;
+
 
 isBoolean( true ); // true
 
@@ -212,8 +214,7 @@ superDate.add( 10, 'year' ) // 2029-7-25
 
 >>>>>>这是引用的内容
 
----
-
+```
 ----
 
 ***

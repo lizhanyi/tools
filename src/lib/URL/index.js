@@ -28,7 +28,7 @@ export default class URL {
      * 返回值： 返回 url 相关信息
      *
      */
-    static toJSON(){
+    static toJSON( url ){
 
         const { search, protocol, hostname, pathname, port, hash } = window.location;
 
@@ -44,15 +44,15 @@ export default class URL {
 
     /**
      * 功能：重置 url
-     * 参数：opt, json 对象, 返回 url
+     * 参数：opt, json 对象。url, 返回 url
      */
-    static set( opt ){
+    static set( opt, url ){
 
         if( !isObject( opt ) ){
-            throw 'The method need a json data, but get a other type data'
+            throw 'The method need JSON, but got a other'
         }
 
-        const { search, uri, hash } = this.toJSON();
+        const { search, uri, hash } = this.toJSON( url );
 
         return [ 
             uri,

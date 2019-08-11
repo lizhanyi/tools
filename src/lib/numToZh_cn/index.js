@@ -2,22 +2,25 @@ import { numRanks, currencyUnits, numMapToCh } from './constant';
 
 export default class NumToZh_cn {
 
-	/**
-	 * 数字位，个、十、百、千、万...
-	 */
-	numRanks = numRanks;
+	constructor(){
+
+		/**
+		 * 数字位，个、十、百、千、万...
+		 */
+		this.__proto__.numRanks = numRanks;
 
 
-	/**
-	 * 货币单位 元、角、分、厘、毫 
-	 */
-	currencyUnits = currencyUnits;
+		/**
+		 * 货币单位 元、角、分、厘、毫 
+		 */
+		this.__proto__.currencyUnits = currencyUnits;
 
-
-	/**
-	 * 阿拉伯数字 与 中文大写映射关系
-	 */
-	numMapToCh = numMapToCh;
+		
+		/**
+		 * 阿拉伯数字 与 中文大写映射关系
+		 */
+		this.__proto__.numMapToCh = numMapToCh;
+	}
 
 
 	/**

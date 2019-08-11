@@ -3,12 +3,13 @@ import { toString } from '../unit';
 import { dataTypes } from './constant';
 
  class Class2type{ 
-
-    /**
-     * 数据类型集合
-     */
-    dataTypes = dataTypes;
-
+    constructor(){
+        /**
+         * 数据类型集合
+         */
+        this.__proto__.dataTypes = dataTypes
+    }
+    
 
     /**
      * 获取数据类型
