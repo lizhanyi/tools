@@ -14,12 +14,10 @@ export default class SuperDate{
 
         this.date =  date;
 
-        const dates = this.format();
-
-        this.dates = dates;
+        this.dates = this._format();
 
         // 结果默认值 
-        this.result = dates;
+        this.result = this.dates;
 
         // 操作日期时 的数据类型
         this.__proto__.types = types;
@@ -33,15 +31,30 @@ export default class SuperDate{
     /**
      * 获取 当前时间
      */
-    now(){
+    _now(){
         return Date.now();
     }
+
+
+    _verify( num, type ){
+
+        if(!/^\d+$/.test( num )){
+            throw 'Expected num is wrong'
+        }
+
+        if( type && !this.types.includes( type ) ){
+            throw 'Expected type is wrong'
+        }
+
+    }
+
+
 
 
     /**
      * 日期格式化, 去除非法日期格式
      */
-    format(){
+    _format(){
         
         let [ year, month, day ] = this.date.split(/-|\//g);
 
@@ -65,9 +78,9 @@ export default class SuperDate{
 
         let [ year, month, day ] = this.result;
 
-        month = ( '' + month ).padStart( 2, '0' );
+        month = String(month).padStart( 2, '0' );
 
-        day = ( '' + day ).padStart( 2, '0' );
+        day = String(day).padStart( 2, '0' );
 
         return [ year, month, day ].join('-');
     }
@@ -102,6 +115,49 @@ export default class SuperDate{
      */
     beforeYears( num ){
 
+        // let [ year, month, day ] = this.dates;
+
+        // const maxDays = this.getMaxDay( year, month );
+
+        // // 当前日期
+        // day = day > maxDays ? maxDays : day;
+        
+        // if( day === 1 ){ // 当前月的 1 号
+
+        //     month = month - 1;
+        //     day = this.getMaxDay( year, month ); 
+        // }else{
+
+        //     day = day - 1;
+        // }
+
+        // this.result = [ +year + num, month, day ];
+
+        // return this;
+    }
+
+
+    /**
+     *  获取当前的时间的前些天、月、年
+     *
+     */
+    before( num, type ){
+
+        // if( !this.types.includes( type ) ){
+        //     throw 'Expected type is wrong'
+        // }
+
+        // return this[ `before${ this.map[ tool.toUpper( type, true ) ] }s`]( num ) 
+    };
+
+
+    /**
+     * 几年后
+     */
+    afterYears( num ){
+        
+        this._verify( num );
+
         let [ year, month, day ] = this.dates;
 
         const maxDays = this.getMaxDay( year, month );
@@ -125,40 +181,31 @@ export default class SuperDate{
 
 
     /**
-     *  获取当前的时间的前些天、月、年
-     *
-     */
-    before( num, type ){
-
-        if( !this.types.includes( type ) ){
-            throw 'Expected type is wrong'
-        }
-
-        return this[ `before${ this.map[ tool.toUpper( type, true ) ] }s`]( num ) 
-    };
-
-
-    /**
-     * 几年后
-     */
-    afterYears( num ){
-
-    }
-
-
-    /**
      * 几月后
      */
     afterMonths( num ){
-
+        return this.afterDays( num, 'month' );
     }
 
 
     /**
-     * 几月后
+     * 几天后
      */
-    afterDays( num ){
+    afterDays( num, type ){
 
+        this._verify( num );
+
+        const [ year, month, day ] = this.dates;
+        const rest = type === 'month' ? [ +num + month - 1, day ] : [ month - 1, +num + day ];
+        const date = new Date( year, ...rest );
+
+        this.result = [ 
+            date.getFullYear(), 
+            date.getMonth() + 1, 
+            date.getDate() 
+        ];
+
+        return this;
     }
     
 
@@ -166,17 +213,21 @@ export default class SuperDate{
      *  获取当前的时间的之后些天、月、年
      *
      */
-    after( num ){
-        return this[ 'after' + tool.toUpper( type ) + 's' ]( num );
+    after( num, type ){
+        return this[ `after${ this.map[ tool.toUpper( type, true ) ] }s`]( +num );
     }
     
 
     /**
      * 功能： 日期加
      * num: 自然数
+     * type: day, month, year
      */
     add( num, type="day" ){
-        return this.before( num, type );
+
+        this._verify( num, type );
+
+        return this.after( +num, type );
     }
 
 

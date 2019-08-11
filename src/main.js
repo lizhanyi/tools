@@ -47,8 +47,8 @@ import {
 const str = '2015-3-1';
 const superDate = new SuperDate( str ); 
 console.log( superDate.result );
-console.log( superDate.before(10, 'Y').get() )
-console.log( superDate.add( 1, 'year' ).get(), str );
+console.log( superDate.after(10, 'Y').afterMonths(10).get() )
+// console.log( superDate.add( 50, 'd' ).get() );
 
 
 
