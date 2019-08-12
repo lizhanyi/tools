@@ -36,6 +36,9 @@ export default class SuperDate{
     }
 
 
+    /**
+     * 检测 数据类型 
+     */
     _verify( num, type ){
 
         if(!/^\d+$/.test( num )){
@@ -49,25 +52,38 @@ export default class SuperDate{
     }
 
 
-
-
     /**
      * 日期格式化, 去除非法日期格式
      */
     _format(){
         
+        if( !/^\d{4}(-|\/)\d{1,2}(-|\/)\d{1,2}/.test( this.date ) ){
+            throw 'date format is wrong'
+        }
+        
         let [ year, month, day ] = this.date.split(/-|\//g);
 
         const maxDays = this.getMaxDay( year, month );
 
-        // 当前天数大于 最大天数
-        day = day > maxDays ? maxDays : day;
+        // 天数校正
+        day = day < 1 ? 1 : day > maxDays ? maxDays : day;
 
-        // 月份 大于 12 
-        month = month > 12 ? 12 : month;
-
+        // 月份校正
+        month = month < 1 ? 1 : month > 12 ? 12 : month;
 
         return [ +year, +month, +day ];
+    }
+
+    _getNewDate( year, month, day ){
+
+        const date = new Date( year, month, day );
+
+        return [ 
+            date.getFullYear(), 
+            date.getMonth() + 1, 
+            date.getDate() 
+        ];
+
     }
 
     
@@ -78,16 +94,16 @@ export default class SuperDate{
 
         let [ year, month, day ] = this.result;
 
-        month = String(month).padStart( 2, '0' );
-
-        day = String(day).padStart( 2, '0' );
+        month = tool.prevZero( month );
+        
+        day = tool.prevZero( day );
 
         return [ year, month, day ].join('-');
     }
 
     
     /**
-     * 功能： 获取每个月的天数
+     * 功能： 获取某个月的天数
      */
     getMaxDay( year, month ){
         return new Date( year, month, 0 ).getDate()
@@ -160,21 +176,13 @@ export default class SuperDate{
 
         let [ year, month, day ] = this.dates;
 
+        year = year + num;
+
         const maxDays = this.getMaxDay( year, month );
 
-        // 当前日期
         day = day > maxDays ? maxDays : day;
-        
-        if( day === 1 ){ // 当前月的 1 号
 
-            month = month - 1;
-            day = this.getMaxDay( year, month ); 
-        }else{
-
-            day = day - 1;
-        }
-
-        this.result = [ +year + num, month, day ];
+        this.result = this._getNewDate(  year, month, day );
 
         return this;
     }
@@ -184,26 +192,33 @@ export default class SuperDate{
      * 几月后
      */
     afterMonths( num ){
-        return this.afterDays( num, 'month' );
+
+        this._verify( num );
+        
+        let [ year, month, day ] = this.dates;
+
+        month = month + num;
+
+        const maxDays = this.getMaxDay( year, month );
+
+        day = day > maxDays ? maxDays : day;
+
+        this.result = this._getNewDate( year, month, day );
+
+        return this;
     }
 
 
     /**
      * 几天后
      */
-    afterDays( num, type ){
+    afterDays( num ){
 
         this._verify( num );
 
         const [ year, month, day ] = this.dates;
-        const rest = type === 'month' ? [ +num + month - 1, day ] : [ month - 1, +num + day ];
-        const date = new Date( year, ...rest );
 
-        this.result = [ 
-            date.getFullYear(), 
-            date.getMonth() + 1, 
-            date.getDate() 
-        ];
+        this.result = this._getNewDate( year, month - 1, +num + day );
 
         return this;
     }
@@ -214,6 +229,7 @@ export default class SuperDate{
      *
      */
     after( num, type ){
+
         return this[ `after${ this.map[ tool.toUpper( type, true ) ] }s`]( +num );
     }
     

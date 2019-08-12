@@ -22,7 +22,11 @@ export default class Tool{
         return slice !== undefined ? charAt0 : charAt0 + letter.substr(1);
 
         // return letter.replace(/^([a-zA-z])([a-zA-z]+)$/, ( a, b, c ) => b.toUpperCase() + c )
-    } 
+    }
+    
+    prevZero( str, count=2, pad='0'){
+        return String( str ).padStart( count, pad );
+    }
 
 }
 
