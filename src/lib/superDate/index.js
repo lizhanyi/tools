@@ -112,10 +112,25 @@ export default class SuperDate{
             [ 'Minutes', 'm', 2 ], 
             [ 'Seconds', 's', 2 ], 
             [ 'Milliseconds', 'ms', 4] 
-        ].reduce( ( prevTotal, [ method, key, count ] ) => ({
+        ].reduce( ( prevTotal, [ method, key, count ] ) => {
+
+            let value = this.result[ 'get' + method ]();
+
+            if( method === 'Month' ){
+
+                value = value + 1;
+            }else if( method === 'Day') {
+                
+                value === 0 ? 7 : value;
+            }
+
+            value = tool.prevZero( value, count );
+            
+            return {
                 ...prevTotal,
-                [ key ]: tool.prevZero( this.result[ 'get' + method ](), count )
-        }), {} );
+                [ key ]: value
+            }
+        }, {} );
     }
 
     
