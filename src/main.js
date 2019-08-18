@@ -44,10 +44,10 @@ import {
 // }, 3000);
 
 // Memory.
-const str = '2015-3-1';
+const str = '2015-2-1';
 const superDate = new SuperDate( str ); 
 console.log( superDate.result );
-console.log( superDate.afterYears(1).get() )
+console.log( superDate.afterDays(10).get())
 // console.log( superDate.add( 50, 'd' ).get() );
 
 
