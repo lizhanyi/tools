@@ -5,7 +5,6 @@ import URL from './URL';
 import Class2type, { class2type } from './class2type';
 import SuperDate from './superDate';
 
-
 export {
     Memory, // 数据本地存储
     NumToZh_cn, // 数字 转换 中文

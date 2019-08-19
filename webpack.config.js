@@ -25,10 +25,18 @@ module.exports = {
                 // presets:[
                 //     "es2015","react"
                 // ]
-                options: {
-                    plugins:[ '@babel/plugin-proposal-class-properties' ],
-                    presets: [ '@babel/env']
-                }
+                // options: {
+                //     plugins:[ '@babel/plugin-proposal-class-properties' ],
+                //     presets: [ '@babel/env',{
+                //             "modules": false,
+                //             "targets": {
+                //               "browsers": ["ie >=9"]
+                //             },
+                //             "useBuiltIns": true,
+                //             "debug": true
+                //           }
+                //     ]
+                // }
             }
         }]
     },
