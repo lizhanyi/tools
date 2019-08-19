@@ -6,6 +6,7 @@ import {
     Class2type,
     class2type,
     SuperDate,
+    platform
 } from './lib';
 
 // import {SuperDate} from 'feitools';
@@ -44,11 +45,15 @@ import {
 // }, 3000);
 
 // Memory.
-const str = '2015-2-1';
-const superDate = new SuperDate( str ); 
-console.log( superDate.result );
-console.log( superDate.afterMonths(10).get())
+// const str = '2015-2-1';
+// const superDate = new SuperDate( str ); 
+// console.log( superDate.result );
+// console.log( superDate.afterMonths(10).get())
 // console.log( superDate.add( 50, 'd' ).get() );
+
+// platform.is
+alert(navigator.userAgent);
+
 
 
 

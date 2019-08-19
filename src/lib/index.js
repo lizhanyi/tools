@@ -4,6 +4,7 @@ import timeFrame from './timeFrame';
 import URL from './URL';
 import Class2type, { class2type } from './class2type';
 import SuperDate from './superDate';
+import platform from './platform'
 
 export {
     Memory, // 数据本地存储
@@ -13,4 +14,5 @@ export {
     Class2type, // 数据类型检测( 类 )
     class2type, // 数据类型检测( 实例 )
     SuperDate, // 日历相关处理 
+    platform, // 运行平台检测
 }
