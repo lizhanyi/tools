@@ -235,8 +235,5 @@ export default class SuperDate{
 
         return this.before( -num, type );
     }
-
-    subAdd(){
-        console.log(111);
-    }
+    
 }

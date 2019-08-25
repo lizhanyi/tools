@@ -51,7 +51,6 @@ const str = '2015-2-1';
 const superDate = new SuperDate( str ); 
 // console.log( superDate.result );
 // console.log( superDate.afterMonths(10).get())
-console.log( superDate.subAdd() );
 
 // platform.is
 
