@@ -1,16 +1,18 @@
-import { 
-    NumToZh_cn,
-    Memory,
-    timeFrame,
-    URL,
-    Class2type,
-    class2type,
-    SuperDate,
-    platform
-} from './lib';
+// import { 
+//     NumToZh_cn,
+//     Memory,
+//     timeFrame,
+//     URL,
+//     Class2type,
+//     class2type,
+//     SuperDate,
+//     Platform
+// } from './lib';
 
-// import {SuperDate} from 'feitools';
-// console.log( SuperDate );
+import { Platform, SuperDate } from 'feitools';
+console.log( Platform, SuperDate );
+
+
 
 // const USER_INFO = new Memory( 'userInfo', 'local' );
 // const TOKEN = new Memory( 'TOKEN', 'local' );
@@ -45,14 +47,13 @@ import {
 // }, 3000);
 
 // Memory.
-// const str = '2015-2-1';
-// const superDate = new SuperDate( str ); 
+const str = '2015-2-1';
+const superDate = new SuperDate( str ); 
 // console.log( superDate.result );
 // console.log( superDate.afterMonths(10).get())
-// console.log( superDate.add( 50, 'd' ).get() );
+console.log( superDate.subAdd() );
 
 // platform.is
-alert(navigator.userAgent);
 
 
 

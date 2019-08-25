@@ -72,7 +72,7 @@ export default class SuperDate{
         return [ +year, +month, +day ];
     }
 
-    
+
     /**
      * 获取新的日期
      */
@@ -234,5 +234,9 @@ export default class SuperDate{
     sub( num, type="day" ){
 
         return this.before( -num, type );
+    }
+
+    subAdd(){
+        console.log(111);
     }
 }

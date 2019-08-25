@@ -25,6 +25,7 @@ export default class Tool{
     }
     
     prevZero( str, count=2, pad='0'){
+        
         return String( str ).padStart( count, pad );
     }
 

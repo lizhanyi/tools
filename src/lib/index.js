@@ -4,7 +4,7 @@ import timeFrame from './timeFrame';
 import URL from './URL';
 import Class2type, { class2type } from './class2type';
 import SuperDate from './superDate';
-import Platform from './platform'
+import Platform from './platform';
 
 export {
     Memory, // 数据本地存储
