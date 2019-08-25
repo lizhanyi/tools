@@ -71,6 +71,8 @@ export default class SuperDate{
 
         return [ +year, +month, +day ];
     }
+
+    
     /**
      * 获取新的日期
      */
@@ -102,7 +104,7 @@ export default class SuperDate{
     /**
      * 返回处理后的结果
      */
-    get(is){
+    get(){
         return [ 
             [ 'FullYear', 'year', 4 ], 
             [ 'Month', 'month', 2 ], 
@@ -220,8 +222,6 @@ export default class SuperDate{
      * num: 自然数
      * type: day, month, year
      */
-
-
     add( num, type="day" ){
 
         return this.after( num, type );

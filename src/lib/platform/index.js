@@ -19,26 +19,54 @@ export default class Platform{
         return this.UA.match( regExp ) != null;
     }
 
+
+    /**
+     * pc 检测
+     */
     isPc(){
         return !this.isMobile();
     }
 
-    isWX(){
+
+    /** 
+     * 微信
+    */
+    isWeiXin(){
 
         return this.UA.indexOf('micromessenger') !== -1;
     }
 
+
+    /**
+     * ios
+     */
     isIos(){
 
         return !!this.UA.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
     }
     
+
+    /**
+     * android
+     */
     isAndroid(){
         
         return this.UA.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
     }
 
-    isDD(){
 
+    /**
+     * 钉钉
+     */
+    isDingDing(){
+        return this.UA.indexOf('dingding') !== -1;
+    }
+
+
+    /**
+     * 获取 UA
+     */
+    get(){
+        return this.UA;
     }
 }
