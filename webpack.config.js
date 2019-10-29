@@ -1,14 +1,19 @@
 const path = require( 'path' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
+
 // hot-module-replacement
 // webpack.HotModuleReplacementPlugin
 
-const resolve = dirname =>  path.resolve( __dirname, dirname );
+const resolve = dirname => path.resolve( __dirname, dirname );
+
+const entry = resolve({ 
+    dev: 'src/main.js', 
+    prod: 'src/lib/index.js' 
+}[ process.env.NODE_ENV ]);
 
 module.exports = {
-    // entry: resolve( 'src/main.js' ),
-    entry: resolve( 'src/lib/index.js' ),
+    entry,
     output: {
         path: resolve( 'dist' ),
         filename: 'index.js',

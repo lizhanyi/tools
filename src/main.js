@@ -1,16 +1,18 @@
-// import { 
-//     NumToZh_cn,
-//     Memory,
-//     timeFrame,
-//     URL,
-//     Class2type,
-//     class2type,
-//     SuperDate,
-//     Platform
-// } from './lib';
+import { 
+    NumToZh_cn,
+    Memory,
+    timeFrame,
+    URL,
+    Class2type,
+    class2type,
+    SuperDate,
+    Platform,
+    RegExp,
+    regExp
+} from './lib';
 
-import { Platform, SuperDate } from 'feitools';
-console.log( Platform, SuperDate );
+// import { Platform, SuperDate, regExp } from 'feitools';
+console.log( Platform, SuperDate, regExp );
 
 
 

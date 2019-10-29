@@ -1,8 +1,8 @@
 
-import { toString } from '../unit';
 import { dataTypes } from './constant';
+import { toString } from './../vars'
 
- class Class2type{ 
+class Class2type{ 
     constructor(){
         /**
          * 数据类型集合

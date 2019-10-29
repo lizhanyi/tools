@@ -73,21 +73,27 @@ export default class Memory{
      */
     _filterFields( value, replacer ){
 
-        let ret = value;
-
-        if( isArray( replacer ) ){
+        if( isArray( replacer ) && replacer.length > 0){ 
 
             if( isObject( value ) ){
-                return JSON.stringify( ret, replacer  );
+                return JSON.stringify( value, replacer  );
             }
 
             if( isArray( value ) && isObject( value[0] ) ){
-                return JSON.stringify( ret.map( ( item ) => JSON.parse( JSON.stringify( item, replacer ) )) );
+                return JSON.stringify( 
+                    value.map( item  => 
+                        replacer.reduce( ( prevTotal, key ) => 
+                            ({ 
+                                ...prevTotal, 
+                                [ key ]: item[ key ] 
+                            }) 
+                        ,{})
+                    )
+                );
             }
-
         }
 
-        return JSON.stringify( ret );
+        return JSON.stringify( value );
     }
 
 

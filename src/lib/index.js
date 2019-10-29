@@ -5,6 +5,7 @@ import URL from './URL';
 import Class2type, { class2type } from './class2type';
 import SuperDate from './superDate';
 import Platform from './platform';
+import RegExp,{ regExp } from './regExp';
 
 export {
     Memory, // 数据本地存储
@@ -15,4 +16,7 @@ export {
     class2type, // 数据类型检测( 实例 )
     SuperDate, // 日历相关处理 
     Platform, // 运行平台检测
+
+    RegExp, // 正则表达式
+    regExp, // 正则表达式实例
 }
