@@ -52,18 +52,18 @@ export default class Tool{
      * 功能：指定数据 转换成 string 并只保留指定的 key 的数据
      * 参数：value：指定的数据对象， replacer：指定的 key 数组
      */
-    filterFields( value, replacer ){
+    filterFields( value, fields ){
 
-        if( isArray( replacer ) && replacer.length > 0){ 
+        if( isArray( fields ) && fields.length > 0){ 
 
             if( isObject( value ) ){
-                return JSON.stringify( value, replacer  );
+                return JSON.stringify( value, fields  );
             }
 
             if( isArray( value ) && isObject( value[0] ) ){
                 return JSON.stringify( 
                     value.map( item  => 
-                        replacer.reduce( ( prevTotal, key ) => 
+                        fields.reduce( ( prevTotal, key ) => 
                             ({ 
                                 ...prevTotal, 
                                 [ key ]: item[ key ] 
@@ -72,16 +72,16 @@ export default class Tool{
                     )
                 );
             }
+            
+            return JSON.stringify( value )
         }
 
         return JSON.stringify( value );
     }
-
-
+    
     /**
      * 功能：将json串 转换成 json 并 抽出 指定的 键值
      */
-
     formatDate( date ){
 
         if( !class2type.isDate( date ) ){
@@ -100,6 +100,13 @@ export default class Tool{
             const ret = date[`get${item}`]();
             return this.prevZero( item === 'Month' ? ret + 1 : ret );
         });
+    }
+
+    /**
+     * 功能：检测数据是否为 falsy值， 数字 0 不处理
+     */
+     isFalsy( param ){
+        return param === null || param === '' || param === undefined || param === false || param === 'null';
     }
 }
 
