@@ -5,7 +5,9 @@ import URL from './URL';
 import Class2type, { class2type } from './unit/class2type';
 import SuperDate from './superDate';
 import Platform from './platform';
-import RegExp,{ regExp } from './regExp';
+import RegExp, { regExp } from './regExp';
+
+import Load, { load } from './load'; 
 
 export {
     Memory, // 数据本地存储
@@ -19,4 +21,7 @@ export {
 
     RegExp, // 正则表达式
     regExp, // 正则表达式实例
+
+    Load,
+    load
 }

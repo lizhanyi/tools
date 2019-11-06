@@ -2,7 +2,7 @@
  * @param { key: 存储的键  }
  * @param { type: 存储类型 local => localStorage, session => sessionStorage  }
 */
-import { isUndefined, isArray, isObject } from '../class2type';
+import { isUndefined, isArray, isObject } from './../unit/class2type';
 
 export default class Memory{
 
@@ -166,17 +166,17 @@ export default class Memory{
 
 
     /**
-     * 批量删除 存储数据， 自动遍历所有存储, 返回剩余存储
+     * 批量删除 存储数据， 自动遍历所有存储
      */
     static removeItems( keys=[] ){
 
         ( 
             !Array.isArray( keys ) ? keys.split(/\W+/g) : keys 
-        ).forEach( key => {
-           Object.values( new this().map ).forEach( item => {
-                item.removeItem( key );
-           })
-        })
+        ).forEach( key => 
+            Object.values( new this().map ).forEach( item => 
+                item.removeItem( key ) 
+            ) 
+        );
     }
 
 
@@ -184,9 +184,10 @@ export default class Memory{
      * 获取存储 与存储数据的 key 值
      */
     static keys(){
-        return Object.entries( new this().map ).reduce( ( prev, [ key, value ]) => ({
-            ...prev,
-            [ key ]: new Array( value.length ).fill( '' ).map( ( item, index ) => value.key( index ) )
-        }), {});
+        return Object.entries( new this().map ).reduce( ( prevTotal, [ key, value ]) => 
+            ({
+                ...prevTotal,
+                [ key ]: new Array( value.length ).fill( '' ).map( ( item, index ) => value.key( index ) )
+            }), {});
     }
 }

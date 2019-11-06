@@ -63,10 +63,10 @@ export default class NumToZh_cn {
 			console.warn('system is only remained 4 decimal places, other will be ignored!')
 		}
 
-		const currencyUnits = this.currencyUnits.slice(1);
+		const currencyUnits = this.currencyUnits.slice( 1 );
 
-		return decimals.map( 
-			( item, index ) => item === '0' ? '' : this.numMapToCh[ item ] + currencyUnits[ index ] 
+		return decimals.map( ( item, index ) => 
+			item === '0' ? '' : this.numMapToCh[ item ] + currencyUnits[ index ] 
 		).join('');
 
 	}

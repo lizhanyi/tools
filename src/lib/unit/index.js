@@ -25,8 +25,8 @@ export default class Tool{
     /**
      * 功能：补空位
      */
-    prevZero( content, count=2, pad='0'){
-        
+    prevZero( content, count = 2, pad = '0' ){
+         
         return String( content ).padStart( count, pad );
     }
 
@@ -37,15 +37,18 @@ export default class Tool{
      */
     pickUpFields( str, fields ){
 
-        return Array.isArray( fields ) && fields.length > 0 ? 
+        if( Array.isArray( fields ) && fields.length > 0 ){
+            
+            return JSON.parse( str, ( key, value ) => key === '' ? value : fields.includes( key ) ? value : undefined );
+        }
 
-            JSON.parse( str, ( key, value ) => {
-                if( key === '' ) 
-                    return value;
-                return fields.includes( key ) ? value : undefined;
-            }) 
-            : 
-            JSON.parse( str );
+        return JSON.parse( str )
+
+        // return Array.isArray( fields ) && fields.length > 0 ? 
+
+        //     JSON.parse( str, ( key, value ) => key === '' ? value : fields.includes( key ) ? value : undefined ) 
+        //     : 
+        //     JSON.parse( str );
     }
 
     /**
@@ -61,19 +64,11 @@ export default class Tool{
             }
 
             if( isArray( value ) && isObject( value[0] ) ){
-                return JSON.stringify( 
-                    value.map( item  => 
-                        fields.reduce( ( prevTotal, key ) => 
-                            ({ 
-                                ...prevTotal, 
-                                [ key ]: item[ key ] 
-                            }) 
-                        ,{})
-                    )
-                );
+                value = value.map( item  => fields.reduce( ( prevTotal, key ) => ({ ...prevTotal, [ key ]: item[ key ] }), {}) ); 
             }
-            
+
             return JSON.stringify( value )
+
         }
 
         return JSON.stringify( value );
@@ -85,7 +80,7 @@ export default class Tool{
     formatDate( date ){
 
         if( !class2type.isDate( date ) ){
-            throw 'param\'s date is not Date Object';
+            throw 'paramter is not Date Object';
         }
         
         return [ 
@@ -116,5 +111,8 @@ export const tool = new Tool();
 export {
     toString, // 
     hasOwn,
-    slice
+    slice,
+
+    class2type,
+
 }
