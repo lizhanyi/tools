@@ -2,7 +2,7 @@
  * @param { key: 存储的键  }
  * @param { type: 存储类型 local => localStorage, session => sessionStorage  }
 */
-import { isUndefined, isArray, isObject } from './../unit/class2type';
+import { isUndefined, isArray, isObject } from './../utils/class2type';
 
 export default class Memory{
 

@@ -1,6 +1,6 @@
 
 import { dataTypes } from './constant';
-import { toString } from './../vars'
+import { toString } from './../vars';
 
 class Class2type{ 
     constructor(){
@@ -37,7 +37,7 @@ const class2type = new Class2type();
  */
 class2type.dataTypes.forEach( item => {
     Object.assign( Class2type.prototype, {
-        ['is'+ item ]( opt ){
+        [ 'is' + item ]( opt ){
             return class2type.getType( opt ) === item;
         }
     })

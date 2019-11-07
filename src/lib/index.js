@@ -2,7 +2,7 @@ import Memory from './memory';
 import NumToZh_cn from './numToZh_cn';
 import timeFrame from './timeFrame';
 import URL from './URL';
-import Class2type, { class2type } from './unit/class2type';
+import Class2type, { class2type } from './utils/class2type';
 import SuperDate from './superDate';
 import Platform from './platform';
 import RegExp, { regExp } from './regExp';

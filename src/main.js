@@ -8,11 +8,15 @@ import {
     SuperDate,
     Platform,
     RegExp,
-    regExp
+    regExp,
+    load
 } from './lib';
 
+
+load.image( '/src/static/img/41.png' );
+
 // import { Platform, SuperDate, regExp } from 'feitools';
-console.log( Platform, SuperDate, regExp );
+// console.log( Platform, SuperDate, regExp );
 
 
 
@@ -51,6 +55,7 @@ console.log( Platform, SuperDate, regExp );
 // Memory.
 const str = '2015-2-1';
 const superDate = new SuperDate( str ); 
+console.log( JSON.stringify( superDate.afterDays(1, 'day' ).get() ) );
 // console.log( superDate.result );
 // console.log( superDate.afterMonths(10).get())
 

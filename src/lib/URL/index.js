@@ -1,4 +1,4 @@
-import { isObject } from './../unit/class2type';
+import { isObject } from './../utils/class2type';
 
 export default class URL {
 

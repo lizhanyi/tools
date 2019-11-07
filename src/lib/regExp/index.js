@@ -1,3 +1,7 @@
+/**
+ * 记录所有的 正则表达式
+ *
+ */
 export default class RegExp {
 
 
@@ -5,7 +9,7 @@ export default class RegExp {
      * 
      * 手机号码
      */
-    isPhoneNumer( exp ){
+    isPhoneNumber( exp ){
         return /^1[0-9]{10}$/.test( exp );
     }
 
@@ -28,10 +32,43 @@ export default class RegExp {
     }
 
 
-    // 中文
+    /**
+     *
+     * 中文
+     */
     isChinese( exp ){
         return /[\u4e00-\u9fa5]/.test( exp );
     }
+
+
+    /**
+     *
+     * 功能：分割数据
+     * 参数：numStr, 数字串; count, 每组数字长度; num, 保存的小数位 可以不传
+     * 返回值：分割后的字符串
+     */
+    splitNum( numStr, count = 3, separator = ',', num ){
+
+        const reg = new RegExp( `(?=(?!(\b))(\d{${count}})+$)`, 'g' );
+
+        if( isNaN( numStr ) ){
+            return numStr;
+        }
+
+        const [ int, decimal ] = numStr.split( '.' );
+
+        if( !decimal && !num ){
+            return numStr.replace( reg, separator );
+        }
+
+
+
+
+        return 
+    }
+
+    
+
 
 }
 

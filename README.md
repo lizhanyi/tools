@@ -1,6 +1,6 @@
 
 feitools
-=============================================================
+=======================================================================
 工具库，提供一些常用的工具方法，项目使用 es6 语法开发，后期会更新成 ts 开发
 ### 安装
 ```
@@ -81,7 +81,7 @@ import { NumToZh_cn } from 'feitools';
 
 const numtozh_cn = new NumToZh_cn();
 
-numtozh_cn.toZh(15.22); // 十五元贰角贰分整
+numtozh_cn.toZh( 15.22 ); // 十五元贰角贰分整
 
 ```
 
@@ -99,11 +99,11 @@ import { URL } from 'feitools';
 
 const url = '?name=a&age=20#sex=m' // 假设 url 地址
 
-URL.get('name'); // a
+URL.get( 'name' ); // a
 
-URL.get('sex'); // null
+URL.get( 'sex' ); // null
 
-URL.get('sex', true ); // m
+URL.get( 'sex', true ); // m
 
 URL.set({ name: 'h', email: '163' }); //'?name=h&email=163&age=20#sex=m'
 
@@ -180,19 +180,103 @@ timeFrame( ( prev, cur, origin ) => {
 #### SuperDate: 超级日期( 目标：打造方便的日期处理 )
 ```javascript
 /*
-* 1. 实例方法
-*   (1) getMaxDay( year, month ): 获取当前月的天数
-*   (2) format(): 分割日期，目前只实现 2019-7-25(推荐)和2019/7/25，后期实现个性定制格式
-*   (3) now(): 获取当前时间
-*   (4) add( num, type ): 增加时间， 目前仅实现 type=year
+* 功能：时间的加减，支持链式调用
+* 1. add( num, type )
+*   功能：增加 指定类型的值
+*   参数：num, 数值，可以为负; type -> year, month, day 
+*   返回值： 日期实例 
+* 2. sub( num, type )
+*   功能：减少 指定类型的值
+*   参数：num, 数值，可以为负; type -> year, month, day
+*   返回值：日期实例
+* 3. get()
+*   功能：获取日期的 json 值
+*   参数：无
+*   返回值：json( 后期 改成 返回指定 格式的值 如：YY-MM-DD )
 */
 import { SuperDate } from 'feitools';
 
-const superDate = new SuperDate('2019-7-25'); 
+const superDate = new SuperDate( '2019-7-25' ); 
 
-superDate.add( 10, 'year' ) // 2029-7-25
+superDate.add( 10, 'year' ).get(); // {"year":"2015","month":"02","day":"02","week":"1","h":"00","m":"00","s":"00","ms":"0000"}
+
+superDate.sub( 10, 'month' ).get(); 
+
+superDate.sub( 10, 'day' ).get(); 
+
+superDate.afterYears( 1 ).get(); // 1年后
+
+superDate.afterMonths( 1 ).get(); // 1月后
+
+superDate.afterDays( 1 ).get(); // 1天后
+
+superDate.beforeYears( 1 ).get(); // 1年前
+
+superDate.beforeMonths( 1 ).get(); // 1月前 
+
+superDate.beforeDays( 1 ).get(); // 1天前
+
+superDate.after( num, type ).get(); // num 年|月|日 后， type, year, month, day
+
+superDate.before( num, type ).get(); // num 年|月|日 前， type, year, month, day
+
+superDate.getMaxDay( year, month ); // 获取 指定月份的区间 最大值
+
+superDate.afterYears( 1 ).beforeDays(1).afterMonths( 1 ).get(); // 链式调用
+
 ```
+#### load: 加载静态资源 css、js、image
 
+```javascript
+/**
+ * 功能：动态加载静态资源
+ * 1. css( url )
+ *  功能: 加载 css 资源
+ *  参数：url, 资源路径
+ *  返回值：promise 对象
+ * 2. script( url )
+ *  功能：加载 js 静态资源
+ *  参数：url, 资源路径
+ *  返回值：promise 对象
+ * 3. image( url )
+ *  功能：加载 图片 资源
+ *  参数：url, 资源路径
+ *  返回值：promise 对象
+ * 
+ * 4. fetch( param )
+ *  功能：动态加载静态资源 入口函数
+ *  参数：param 可以为 url 数组、或以逗号隔开的字符串
+ *  返回值： promise 对象， 用于接收返回结果
+ * 
+*/
+
+import { Load } from 'feitools';
+
+const load = new Load(); // 实例化 Load
+const log = console.log;
+// 加载图片
+load.image( '1.png' ).then( res => log( 'success' ) ).catch( res => log( 'fail' ) );
+
+// 加载 css
+load.css( 'css.css' ).then( res => log( 'success' ) ).catch( res => log( 'fail' ) );
+
+// 加载 js
+load.css( 'javascript.js' ).then( res => log( 'success' ) ).catch( res => log( 'fail' ) );
+
+// 数组， 不区分文件
+load.fetch([ 'png.png', 'gif.gif', 'css.css', 'javascript.js' ]).then( res => 
+    console.log( 'success' ) 
+).catch( res => 
+    console.log( 'fail' ) 
+);
+
+load.fetch( 'png.png, gif.gif , css.css, javascript.js' ).then( res =>
+    console.log( 'success' );
+).catch( res =>
+    console.log( 'fail' )
+)
+
+```
 # m
 ## mm
 ### mmm

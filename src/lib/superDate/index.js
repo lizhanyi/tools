@@ -3,7 +3,7 @@
  * 后期后根据业务需求， 继续丰富功能
  */
 
-import { tool } from './../unit';
+import { tool } from './../utils';
 import { types, map } from './constant';
 
 export default class SuperDate{

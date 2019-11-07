@@ -146,7 +146,7 @@ export default class Load {
 
 
     /**
-     * 功能： 拉取静态资源的入口函数
+     * 功能： 拉取静态资源 入口函数
      * 参数：param, 
      */
     fetch( param ) {
