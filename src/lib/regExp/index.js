@@ -1,7 +1,13 @@
 /**
- * 记录所有的 正则表达式
- *
+ **********************************正则表达式规则说明********************
+ * 前瞻 exp1(?=exp2) 查找 exp2 前面的 exp1
+ * 后顾： (?<=exp2)exp1 查找 exp2 后面的 exp1
+ * 负前瞻：exp1(?!exp2) 查找后面不是 exp2 的 exp1
+ * 负后顾：(?<!exp2)exp1 查找前面不是 exp2 的 exp1
+ **********************************************************************
  */
+import { class2type } from './../utils';
+
 export default class RegExp {
 
 
@@ -9,7 +15,7 @@ export default class RegExp {
      * 
      * 手机号码
      */
-    isPhoneNumber( exp ){
+    isPhoneNum( exp ){
         return /^1[0-9]{10}$/.test( exp );
     }
 
@@ -36,7 +42,7 @@ export default class RegExp {
      *
      * 中文
      */
-    isChinese( exp ){
+    isZh( exp ){
         return /[\u4e00-\u9fa5]/.test( exp );
     }
 
@@ -51,25 +57,20 @@ export default class RegExp {
 
         const reg = new RegExp( `(?=(?!(\b))(\d{${count}})+$)`, 'g' );
 
-        if( isNaN( numStr ) ){
-            return numStr;
-        }
+        if( isNaN( numStr ) ) return numStr;
 
         const [ int, decimal ] = numStr.split( '.' );
 
-        if( !decimal && !num ){
-            return numStr.replace( reg, separator );
+        let ret = int.replace( reg, separator );
+
+        if( decimal ){ 
+
+            //  如果 num 存在 并且为数字， 保留 num 位小数， 否则处理小数部分
+            ret = !class2type.isUndefined( num ) && !isNaN( num ) ? ret + '.' + decimal.substring( 0, num ) : ret + '.' + decimal;
         }
 
-
-
-
-        return 
+        return ret;
     }
-
-    
-
-
 }
 
 export const regExp = new RegExp()
