@@ -7,7 +7,9 @@ import SuperDate from './superDate';
 import Platform from './platform';
 import RegExp, { regExp } from './regExp';
 
-import Load, { load } from './load'; 
+import Load, { load } from './load';
+
+import Tool, { tool } from './utils';
 
 export {
     Memory, // 数据本地存储
@@ -23,5 +25,8 @@ export {
     regExp, // 正则表达式实例
 
     Load, // 静态 资源加载类
-    load
+    load, // 实例
+
+    Tool, // 工具类
+    tool, // 实例
 }

@@ -9,11 +9,49 @@ import {
     Platform,
     RegExp,
     regExp,
-    load
+    load,
+    tool
 } from './lib';
 
 
-load.image( '/src/static/img/41.png' );
+
+/************************** tool **************************/
+const json = {
+    name: 'alibaba',
+    sex: '男',
+    age: '12',
+    company: '集团',
+    stree: '高教路',
+    city: '杭州',
+    country: '中国',
+    province: '浙江'
+}
+
+const jsonstr = tool.filterFields( json, [ 'name', 'sex', 'country', 'city' ] );
+
+console.log( 'jsonstr->',jsonstr, 'json->', json, '-------------> tool.filterFields' );
+
+const parsejson = tool.pickUpFields( jsonstr, [ 'name', 'sex' ]);
+
+console.log( 'parsejson->', parsejson, '-------------> tool.pickUpFields' );
+
+
+// 2. format();
+console.log( '--------- date ------------' );
+const date = tool.formatDate( new Date( 2015, 10, 10 ));
+console.log( date, 'date' );
+
+/************************** tool **************************/
+
+
+
+// Promise.all( load.css( '/src/static/css/index.css' ) ).then( res => {
+//     console.log( res, 'res' );
+// })
+
+// load.fetch([ '/src/static/css/index.css', '/src/static/lib/index.js', '/src/static/img/41.png' ]).then( res => {
+//     console.log( res, 'res' );
+// })
 
 // import { Platform, SuperDate, regExp } from 'feitools';
 // console.log( Platform, SuperDate, regExp );
@@ -53,11 +91,13 @@ load.image( '/src/static/img/41.png' );
 // }, 3000);
 
 // Memory.
-const str = '2015-2-1';
-const superDate = new SuperDate( str ); 
-console.log( JSON.stringify( superDate.afterDays(1, 'day' ).get() ) );
+// const str = '2015-2-1';
+// const superDate = new SuperDate( str ); 
+// console.log( JSON.stringify( superDate.afterDays(1, 'day' ).get() ) );
 // console.log( superDate.result );
 // console.log( superDate.afterMonths(10).get())
+
+
 
 // platform.is
 
