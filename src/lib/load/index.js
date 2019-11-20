@@ -1,6 +1,7 @@
 
 /**
  * 功能： 加载静态资源, 提供 css 和 js 加载
+ * @des 动态加载静态资源，不能包含 commom.js 或 es6 
  * @createElement ：创建节点
  * @appendChild ： 插入节点
  * @getNode : 获取节点
@@ -11,19 +12,32 @@
  * 
  */
 
+import { class2type } from './../utils';
 
 export default class Load {
 
     constructor(){
 
         // 保存 head 节点
-        this.headNode = null;
+        this._headNode = null;
 
         // link 节点 属性配置
         this.linkConfig = {
             'charset': 'utf-8',
-            'rel': 'styleshee',
+            'rel': 'stylesheet',
             'type': 'text/css'
+        }
+
+        /** 
+         * 字段和方法相关映射
+        */
+        this.map = {
+            'js': 'script',
+            'css': 'css',
+            'png': 'image',
+            'jpg': 'image',
+            'gif': 'image',
+            'jpeg': 'image'
         }
     }
 
@@ -32,7 +46,7 @@ export default class Load {
      * 功能： 新建节点
      * 参数：tagName
      */
-    createElement( tagName ) {
+    _createElement( tagName ) {
         return document.createElement( tagName );
     }
 
@@ -42,7 +56,7 @@ export default class Load {
      * 参数： childNode， 子节点对象， parentNode，父节点对象， 默认值 document
      * 返回值： 无
      */
-    appendChild( childNode, parentNode = document ){
+    _appendChild( childNode, parentNode = document ){
         parentNode.appendChild( childNode );
     }
 
@@ -52,7 +66,7 @@ export default class Load {
      * 参数： childNode， 子节点对象， parentNode，父节点对象， 默认值 document
      * 返回值： 删除后的节点
      */
-    removeChild( childNode ) {
+    _removeChild( childNode ) {
         return childNode.parentNode.removeChild( childNode );
     }   
 
@@ -60,69 +74,74 @@ export default class Load {
     /**
      * 功能： 获取指定节点
      * 参数： selector， css 选择器， context， 作用域( 注意节点类型 )， 默认 document
-     * 返回值： DOM 对象
+     * 返回值： DOM 对象 为 list 
      */
-    getNode( selector, context = document.body ) {
+    _getNode( selector, context = document ) {
         return context.querySelectorAll( selector );
     }
 
 
     /**
-     * 功能： 获取数据类型
-     * 参数：数据 对象
-     * 返回值：数据类型 字符串
-     */
-    getType( param ) {
-        return Object.prototype.toString.call( param ).replace(/^\[object\s+(.+)\]$/,'$1').toLowerCase();
-    }
-
-
-    /**
      * 功能： 动态加载 css 逻辑处理
-     * 参数：url，
+     * 参数： urls, 数组或以逗号隔开的字符串
      * 返回值： promise 对象
      */
-    css( url ) {
+    css( urls ) {
 
-        const { createElement, appendChild, linkConfig, getNode, headNode } = this;
-        const linkNode  = createElement( 'link' );
-        const p = new Promise( resolve => linkNode.onload = () => resolve( url ) );
+        const { _createElement, _appendChild, linkConfig, _getNode, _headNode } = this;
 
-        Object.entries( linkConfig ).forEach( ([ key, value ]) => linkNode[ key ] = value );
+        this._headNode = _headNode || _getNode( 'head' )[0];
 
-        linkNode.href = url;
+        return this.handleParam( urls ).map( url => {
 
-        this.headNode = headNode || getNode( 'head' )[0];
-        appendChild( linkNode,  this.headNode );
+            const linkNode  = _createElement( 'link' );
+            const p = new Promise( resolve => linkNode.onload = () => resolve( url ) );
+    
+            Object.entries( linkConfig ).forEach( ([ key, value ]) => linkNode[ key ] = value );
+    
+            linkNode.href = url;
 
-        return p;
+            _appendChild( linkNode,  this._headNode );
+    
+            return p;
+        })
     }
 
 
     /**
      * 功能： 动态加载 javascript
-     * 参数： url
+     * 参数： urls, 数组或以逗号隔开的字符串
      * 返回值： promise 对象
      */
-    script( url ) {
+    script( urls ) {
 
-        const { createElement, appendChild, getNode, headNode } = this;
-        const scriptNode = createElement( 'script' );
-        const p = new Promise( ( resolve, reject ) => {
+        const { _createElement, _appendChild, _getNode, _headNode } = this;
 
-            if( scriptNode.readyState ){
-                scriptNode.onreadystatechange = () => ( scriptNode.readyState === 'loaded' || scriptNode.readyState === 'complete' ) ? resolve( url ) : reject( url );
-            }else{
-                scriptNode.onload = () => resolve( url );
-            }
+        this._headNode = _headNode || _getNode( 'head' )[0];
+
+        return this.handleParam( urls ).map( url => {
+
+            const scriptNode = _createElement( 'script' );
+
+            const p = new Promise( ( resolve, reject ) => {
+      
+                if( scriptNode.readyState ){
+                    scriptNode.onreadystatechange = () => 
+                        ( scriptNode.readyState === 'loaded' || scriptNode.readyState === 'complete' ) ? resolve( url ) : reject( url );
+                }else{
+                    scriptNode.onload = () => resolve( url );
+                }
+    
+            });
+    
+            scriptNode.src = url;
+
+            _appendChild( scriptNode,  this._headNode );
+
+    
+            return p;
 
         });
-
-        scriptNode.src = url;
-        this.headNode = headNode || getNode( 'head' )[0];
-        appendChild( scriptNode,  this.headNode );
-
-        return p;
     }
 
 
@@ -131,54 +150,65 @@ export default class Load {
      * 参数： url
      * 返回值： promise 对象
      */
-    image( url ) {
+    image( urls ) {
 
-        const img = new Image();
-        const p = new Promise( ( resolve, reject ) => {
-            img.onload = () => resolve( url );
-            img.onerror = () => reject( url );
-        });
+        return this.handleParam( urls ).map( url => {
 
-        img.src = url;
+            const img = new Image();
 
-        return p;
+            const p = new Promise( ( resolve, reject ) => {
+
+                img.onload = () => resolve( url );
+
+                img.onerror = () => reject( url );
+
+            });
+
+            img.src = url;
+
+            return p
+        })
+
+    }
+
+
+    /**
+     * 功能：处理参数
+     * 参数：param， 传入的 url 参数
+     * 返回值：处理后的结果，数组类型
+     *
+     */
+    handleParam( param ){
+
+        const type = class2type.getType( param );
+
+        return type === 'String' ? param.trim().split( /\s*,\s*/ ) : type === 'Array' ? param : []; 
+
     }
 
 
     /**
      * 功能： 拉取静态资源 入口函数
-     * 参数：param, 
+     * 参数：param, 数组或字符串
      */
     fetch( param ) {
 
-        const { getType, css, script, image  } = this;
-
-        let defer = null; // 保存 promise
-
-        switch( getType( param ) ){
-            case 'array': break;
-            case 'string': param = param.trim().split( /\s*,\s*/ ); break;
-            default: param = [];
-        }
+        param = this.handleParam( param );
 
         if( param.length === 0 ){
             throw `paramter is only string or array`;
         }
 
-        const defers = param.reduce( (prevTotal, item ) => {
+        const defers = param.reduce( ( prevTotal, item ) => {
 
             const ret = item.match( /\.(js|css|png|gif|jpe?g)$/ ); 
-            
 
             if( ret !== null && ret.length !== 0 ){
 
-                switch( ret.slice( -1 )[ 0 ] ){
-                    case 'js': defer = script( item ); break;
-                    case 'css': defer = css( item ); break;
-                    default: defer = image( item );
-                }
-
-                return [ ...prevTotal, defer  ];
+                return [ 
+                    ...prevTotal, 
+                    ...this[ this.map[ ret.pop() ] ]( item ) 
+                ]
 
             }
             

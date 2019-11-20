@@ -94,7 +94,7 @@ export default class NumToZh_cn {
 
 		return [ 
 			char,
-			this._dataIntHandle([ ...integers ] ), 
+			this._dataIntHandle([ ...integers ]), 
 			this._dataDeciHandle([ ...decimals ]), 
 			'整' 
 		].join('');

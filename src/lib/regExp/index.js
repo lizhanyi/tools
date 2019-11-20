@@ -1,9 +1,9 @@
 /**
  **********************************正则表达式规则说明********************
- * 前瞻 exp1(?=exp2) 查找 exp2 前面的 exp1
- * 后顾： (?<=exp2)exp1 查找 exp2 后面的 exp1
- * 负前瞻：exp1(?!exp2) 查找后面不是 exp2 的 exp1
- * 负后顾：(?<!exp2)exp1 查找前面不是 exp2 的 exp1
+ * 1. 前瞻 exp1(?=exp2) 查找 exp2 前面的 exp1
+ * 2. 后顾： (?<=exp2)exp1 查找 exp2 后面的 exp1
+ * 3. 负前瞻：exp1(?!exp2) 查找后面不是 exp2 的 exp1
+ * 4. 负后顾：(?<!exp2)exp1 查找前面不是 exp2 的 exp1
  **********************************************************************
  */
 import { class2type } from './../utils';
@@ -64,13 +64,13 @@ export default class RegExp {
         let ret = int.replace( reg, separator );
 
         if( decimal ){ 
-
             //  如果 num 存在 并且为数字， 保留 num 位小数， 否则处理小数部分
-            ret = !class2type.isUndefined( num ) && !isNaN( num ) ? ret + '.' + decimal.substring( 0, num ) : ret + '.' + decimal;
+            ret = !class2type.isUndefined( num ) && !isNaN( num ) ? 
+                ret + '.' + decimal.substring( 0, num ) : ret + '.' + decimal;
         }
 
         return ret;
     }
 }
 
-export const regExp = new RegExp()
+export const regExp = new RegExp();

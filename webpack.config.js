@@ -58,14 +58,6 @@ module.exports = {
         }),
     ],
 
-    // // 别名
-    alias: {
-        "@": path.resolve( "src" ),
-        "@static": path.resolve( "src/static" ),
-        "@pages": path.resolve( "src/pages" ),
-        // "@utils":path.resolve("src/utils"),
-    },
-
     // 配置服务器
 	devServer : {
 		open : false,
