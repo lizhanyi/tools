@@ -22,6 +22,6 @@ export {
     RegExp, // 正则表达式
     regExp, // 正则表达式实例
 
-    Load,
+    Load, // 静态 资源加载类
     load
 }
