@@ -16,6 +16,8 @@ import {
 
 
 /************************** tool **************************/
+
+// 1. filterFields,  pickUpFields    
 const json = {
     name: 'alibaba',
     sex: '男',
@@ -29,19 +31,27 @@ const json = {
 
 const jsonstr = tool.filterFields( json, [ 'name', 'sex', 'country', 'city' ] );
 
-console.log( 'jsonstr->',jsonstr, 'json->', json, '-------------> tool.filterFields' );
+console.log( jsonstr,  json, '-------------> tool.filterFields' );
 
 const parsejson = tool.pickUpFields( jsonstr, [ 'name', 'sex' ]);
 
-console.log( 'parsejson->', parsejson, '-------------> tool.pickUpFields' );
+console.log( parsejson, '-------------> tool.pickUpFields' );
 
 
 // 2. format();
-console.log( '--------- date ------------' );
+// console.log( '--------- date ------------' );
 const date = tool.formatDate( new Date( 2015, 10, 10 ));
-console.log( date, 'date' );
+// console.log( date, 'date' );
+
+// 3. groupArray()
+    groupArray( [ 'q', 'w', 'e', 'r', 't' ], 3 ) // [ [ 'q', 'w', 'e' ], [ 'r', 't' ] ]
+
+
 
 /************************** tool **************************/
+
+
+
 
 
 
