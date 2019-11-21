@@ -1,6 +1,5 @@
-import { class2type, isArray, isObject, isDate } from './class2type';
+import { class2type, isArray, isObject, isDate, isNumber } from './class2type';
 import { toString,  hasOwn, slice } from './vars';
-import RegExp from '../regExp';
 
 export default class Tool{
 
@@ -104,7 +103,13 @@ export default class Tool{
      * 参数：date，日期对象
      * 返回值：包含日期信息信息的 数组 [ year, month, day, h, min, sec, misec ]
      */
-    formatDate( date, format = "YYYY年MM月DD日"){
+    formatDate( date, format = "YYYY-MM-DD hh:mm:ss"){
+
+        const { groupArray, _formatMiddleFunc } = this;
+
+        const dateStr = format.split( /\s+/ );
+
+        const types = [ 'date', 'time' ];
 
         if( !isDate( date ) ){
             throw 'paramter is not Date Object';
@@ -123,13 +128,13 @@ export default class Tool{
             return this.prevZero( item === 'Month' ? ret + 1 : ret );
         });
 
-        let [ dateStr, timeStr ] = format.split( /\s+/ );
-
-        dateStr = this._formatMiddleFunc( 'date', dateStr, dates.slice( 0, 3 ) ).join( '' );
-        timeStr = this._formatMiddleFunc( 'time', timeStr, dates.slice( 3 ) ).join( '' );
-
-        return [ dateStr, timeStr ].join( ' ' );
-        
+        return groupArray( dates, 3 ).map( ( item, index ) => 
+            _formatMiddleFunc( 
+                types[ index ], 
+                dateStr[ index ], 
+                item 
+            ).join( '' ) 
+        ).join( ' ' );
     }
 
     /**
@@ -138,6 +143,37 @@ export default class Tool{
      isFalsy( param ){
         return param === null || param === '' || param === undefined || param === false || param === 'null';
     }
+
+    /*** 
+     * 功能：数组分组，仅支持分 2 组
+     * 参数：array, 数组; condition, 分组规则，可以是数组，对象
+     * 返回值：分组后的数据
+    */
+    groupArray( array=[], condition ){
+
+        const { getType } = class2type;
+
+        const arrayCopy = [ ...array ];
+
+        if( !isArray( array ) ){
+
+            throw `Expected arguments 1 is array, but got a ${ getType( array, true ) }`;
+        }
+        
+        if( !isNumber( +condition ) && !isArray( condition ) && !isObject( condition )  ){
+
+            throw `Expected arguments 2 is number or array, but got a ${ getType( condition, true ) }`;
+        }
+
+        // 如何是数字 直接分组处理
+        if( isNumber( condition ) ){
+            return [ arrayCopy.splice( 0, condition ),  arrayCopy ];
+        } 
+
+        throw `Method only supports 2 arguments and bunber split, later apply more supports.`;
+
+    }
+    
 }
 
 
