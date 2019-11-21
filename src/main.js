@@ -16,52 +16,61 @@ import {
 
 
 /************************** tool **************************/
-
+    console.log( '------------ tool ------------------' );
 // 1. filterFields,  pickUpFields    
-const json = {
-    name: 'alibaba',
-    sex: '男',
-    age: '12',
-    company: '集团',
-    stree: '高教路',
-    city: '杭州',
-    country: '中国',
-    province: '浙江'
-}
+    const json = {
+        name: 'alibaba',
+        sex: '男',
+        age: '12',
+        company: '集团',
+        stree: '高教路',
+        city: '杭州',
+        country: '中国',
+        province: '浙江'
+    }
 
-const jsonstr = tool.filterFields( json, [ 'name', 'sex', 'country', 'city' ] );
+    const jsonstr = tool.filterFields( json, [ 'name', 'sex', 'country', 'city' ] );
 
-console.log( jsonstr,  json, '-------------> tool.filterFields' );
+    console.log( jsonstr,  json );
 
-const parsejson = tool.pickUpFields( jsonstr, [ 'name', 'sex' ]);
+    const parsejson = tool.pickUpFields( jsonstr, [ 'name', 'sex' ]);
 
-console.log( parsejson, '-------------> tool.pickUpFields' );
+    console.log( parsejson );
 
 
 // 2. format();
 // console.log( '--------- date ------------' );
-const date = tool.formatDate( new Date( 2015, 10, 10 ));
+    const date = tool.formatDate( new Date( 2015, 10, 10 ));
 // console.log( date, 'date' );
 
 // 3. groupArray()
-    groupArray( [ 'q', 'w', 'e', 'r', 't' ], 3 ) // [ [ 'q', 'w', 'e' ], [ 'r', 't' ] ]
+    const arrs = tool.groupArray( [ 'q', 'w', 'e', 'r', 't' ], 3 );
+
+    console.log( arrs ); // [ [ 'q', 'w', 'e' ], [ 'r', 't' ] ]
+
 
 
 
 /************************** tool **************************/
 
 
+/************************** load 模块测试  **************************/
 
 
+console.log( '------------ load ------------------' );
 
 
-// Promise.all( load.css( '/src/static/css/index.css' ) ).then( res => {
-//     console.log( res, 'res' );
-// })
+Promise.all( load.css( '/src/static/css/index.css' ) ).then( res => {
+    console.log( res, 'res' );
+});
 
-// load.fetch([ '/src/static/css/index.css', '/src/static/lib/index.js', '/src/static/img/41.png' ]).then( res => {
-//     console.log( res, 'res' );
-// })
+load.fetch([ '/src/static/css/index.css', '/src/static/lib/index.js', '/src/static/img/41.png' ]).then( res => {
+    console.log( res, 'res' );
+});
+
+/************************** load 模块测试  **************************/
+
+
 
 // import { Platform, SuperDate, regExp } from 'feitools';
 // console.log( Platform, SuperDate, regExp );
