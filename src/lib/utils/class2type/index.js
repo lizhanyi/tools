@@ -7,15 +7,20 @@ class Class2type{
         /**
          * 数据类型集合
          */
-        this.__proto__.dataTypes = dataTypes
+        this.__proto__.dataTypes = dataTypes;
     }
     
 
     /**
-     * 获取数据类型
+     * 功能：获取数据类型
+     * 参数：opt, 数据对象; shift, 切换类型大小写, 默认首字母大写
+     * 返回值：数据类型
      */
-    getType( opt ){
-        return toString.call( opt ).replace(/^\[object\s+(.+)\]$/,'$1');
+    getType( opt, shift = false ){
+
+        const typeStr = toString.call( opt ).replace(/^\[object\s+(.+)\]$/,'$1');
+
+        return shift ? typeStr.toLowerCase() : typeStr
     }
 
 
@@ -66,4 +71,5 @@ export const {
     isSet,
     isMap,
     isPromise,
+    getType
 } = class2type;
