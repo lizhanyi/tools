@@ -6,7 +6,7 @@ export default class Tool{
     /**
      * 功能：首写字母大写
      */
-    toUpper( letter, slice ){
+    toUpper( letter, slice = false ){
 
         let charAt0 = letter.charAt(0);
         
@@ -16,7 +16,7 @@ export default class Tool{
 
         charAt0 = charAt0.toUpperCase();
 
-        return slice !== undefined ? charAt0 : charAt0 + letter.substr(1);
+        return slice ? charAt0 : charAt0 + letter.substr(1);
 
         // return letter.replace(/^([a-zA-z])([a-zA-z]+)$/, ( a, b, c ) => b.toUpperCase() + c )
     }
@@ -56,7 +56,7 @@ export default class Tool{
 
     /**
      * 功能：指定数据 转换成 string 并只保留指定的 key 的数据
-     * 参数：value：指定的数据对象， replacer：指定的 key 数组
+     * 参数：value：指定的数据对象， fields：指定的 key 数组
      * 返回值：转换后的字符串
      */
     filterFields( value, fields ){

@@ -57,16 +57,17 @@ import {
 /************************** load 模块测试  **************************/
 
 
-console.log( '------------ load ------------------' );
+    console.log( '------------ load ------------------' );
 
+    // 1. load.css
+    Promise.all( load.css( '/src/static/css/index.css' ) ).then( res => {
+        console.log( res, 'res' );
+    });
 
-Promise.all( load.css( '/src/static/css/index.css' ) ).then( res => {
-    console.log( res, 'res' );
-});
-
-load.fetch([ '/src/static/css/index.css', '/src/static/lib/index.js', '/src/static/img/41.png' ]).then( res => {
-    console.log( res, 'res' );
-});
+    // 2. load.fetch
+    load.fetch([ '/src/static/css/index.css', '/src/static/lib/index.js', '/src/static/img/41.png' ]).then( res => {
+        console.log( res, 'res' );
+    });
 
 /************************** load 模块测试  **************************/
 

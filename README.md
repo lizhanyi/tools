@@ -277,6 +277,45 @@ load.fetch( 'png.png, gif.gif , css.css, javascript.js' ).then( res =>
 )
 
 ```
+#### Tool 类
+```javascript
+/**
+ * @dec 提供常用的基础功能和方法
+ * 1. toUpper( letter, slice )
+ *  功能：将首字母大写
+ *  参数：letter, 字符串; slice，不传，返回第一个字母的大写字符， 否则返回首字母大写的字符串
+ *  返回值：首字母的字符或首字母大写的字符串
+ * 2. prevZero( content, count, pad )
+ *  功能：给字符串加前导字符
+ *  参数：content, 字符串; count, 实际需要的字符串位数; pad, 补充的字符串内容
+ *  返回值：处理后的字符串
+ * 3. pickUpFields( str, fields )
+ *  功能：从 json 串 中 挑出指定的 字段数据，并返回 josn 数据
+ *  参数：str, json 字符串; fields 数组， 指定的字段
+ *  返回值：挑选后的 json 数据
+ * 4. filterFields( value, fields )
+ *  功能：指定数据 转换成 string 并只保留指定的 key 的数据
+ *  参数：value, 指定的数据对象; fields, 指定的 键名 集合
+ *  返回值：字符串
+ * 5. formatDate( date, format )
+ *  功能：格式化日期
+ *  参数：date, 日期对象; format, 字符串，日期格式字符
+ *  返回值：按指定格式处理后的结果
+ * 6. groupArray( array, condition )
+ *  功能：将数据分组
+ *  参数：array, 数组; condition, 指定分割的索引
+ *  返回值：二维数组
+*/
+
+    const tool = new Tool();
+    tool.groupArray([ 'q', 'w', 'e', 'r' ], 2 ) // [ ['q', 'w'], [ 'e', 'r' ] ]
+
+    tool.formatDate( new Date(2015, 10, 10 ), 'YYYY年MM月DD日 hh时mm分ss秒' ); // 2015年1月十日 00时00分00秒
+    tool.pickUpFields('{"name":"name","age":"age","company":"alibaba"}', ['name']); // { name: 'name'}
+
+    tool.filterFields({name: 'name', age: 'age', sex: 'sex' }, ['name'] ); // '{"name":"name"}'
+```
+
 # m
 ## mm
 ### mmm
