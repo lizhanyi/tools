@@ -39,10 +39,7 @@ export default class Memory{
      * 存储数据， value 数据
      */
     setItem( value, replacer ){
-
-        const data = tool.filterFields( value, replacer );
-
-        this.map[ this.type ].setItem( this.key, data );
+        this.map[ this.type ].setItem( this.key, tool.filterFields( value, replacer ) );
     }
 
 
@@ -67,35 +64,6 @@ export default class Memory{
      */
     getKey(){
         return this.key in this.map[ this.type ];
-    }
-
-
-    /**
-     * 过滤字段， replacer 仅支持 数组
-     */
-    _filterFields( value, replacer ){
-
-        if( isArray( replacer ) && replacer.length > 0){ 
-
-            if( isObject( value ) ){
-                return JSON.stringify( value, replacer  );
-            }
-
-            if( isArray( value ) && isObject( value[0] ) ){
-                return JSON.stringify( 
-                    value.map( item  => 
-                        replacer.reduce( ( prevTotal, key ) => 
-                            ({ 
-                                ...prevTotal, 
-                                [ key ]: item[ key ] 
-                            }) 
-                        ,{})
-                    )
-                );
-            }
-        }
-
-        return JSON.stringify( value );
     }
 
 
@@ -172,12 +140,12 @@ export default class Memory{
      */
     static removeItems( keys=[] ){
 
-        ( 
-            !Array.isArray( keys ) ? keys.split(/\W+/g) : keys 
-        ).forEach( key => 
-            Object.values( new this().map ).forEach( item => 
-                item.removeItem( key ) 
-            ) 
+        const storageTypes = Object.values( new this().map );
+
+        keys = !isArray( keys ) ? keys.split(/\W+/g) : keys;
+
+        keys.forEach( key => 
+            storageTypes.forEach( item => item.removeItem( key ) ) 
         );
     }
 
@@ -190,6 +158,7 @@ export default class Memory{
             ({
                 ...prevTotal,
                 [ key ]: new Array( value.length ).fill( '' ).map( ( item, index ) => value.key( index ) )
-            }), {});
+            }), {}
+        );
     }
 }

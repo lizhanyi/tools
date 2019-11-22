@@ -306,11 +306,12 @@ load.fetch( 'png.png, gif.gif , css.css, javascript.js' ).then( res =>
  *  参数：array, 数组; condition, 指定分割的索引
  *  返回值：二维数组
 */
-
+    import { Tool } from 'feotools';
     const tool = new Tool();
     tool.groupArray([ 'q', 'w', 'e', 'r' ], 2 ) // [ ['q', 'w'], [ 'e', 'r' ] ]
 
-    tool.formatDate( new Date(2015, 10, 10 ), 'YYYY年MM月DD日 hh时mm分ss秒' ); // 2015年1月十日 00时00分00秒
+    tool.formatDate( new Date(2015, 10, 10 ), 'YYYY年MM月DD日 hh时mm分ss秒' ); // 2015年11月10日 00时00分00秒
+
     tool.pickUpFields('{"name":"name","age":"age","company":"alibaba"}', ['name']); // { name: 'name'}
 
     tool.filterFields({name: 'name', age: 'age', sex: 'sex' }, ['name'] ); // '{"name":"name"}'

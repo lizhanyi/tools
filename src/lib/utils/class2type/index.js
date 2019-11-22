@@ -13,7 +13,7 @@ class Class2type{
 
     /**
      * 功能：获取数据类型
-     * 参数：opt, 数据对象; shift, 切换类型大小写, 默认首字母大写
+     * 参数：opt, 数据对象; shift, 切换类型大小写, 默认值值 false 首字母大写
      * 返回值：数据类型
      */
     getType( opt, shift = false ){
@@ -71,5 +71,6 @@ export const {
     isSet,
     isMap,
     isPromise,
-    getType
+    getType,
+    isEmptyObject
 } = class2type;
