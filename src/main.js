@@ -10,7 +10,8 @@ import {
     RegExp,
     regExp,
     load,
-    tool
+    tool,
+    Watermark,
 } from './lib';
 
 
@@ -61,16 +62,27 @@ import {
 
     // 1. load.css
     Promise.all( load.css( '/src/static/css/index.css' ) ).then( res => {
-        console.log( res, 'res' );
+        // console.log( res, 'res' );
     });
 
     // 2. load.fetch
     load.fetch([ '/src/static/css/index.css', '/src/static/lib/index.js', '/src/static/img/41.png' ]).then( res => {
-        console.log( res, 'res' );
+        // console.log( res, 'res' );
     });
 
 /************************** load 模块测试  **************************/
 
+
+const watermark = new Watermark();
+const url =  watermark.init().render().getImage();
+
+const image = new Image();
+
+image.src = url;
+
+document.body.appendChild( image );
+
+// console.log( watermark.init().render().getImage(), 'watermark' );
 
 
 // import { Platform, SuperDate, regExp } from 'feitools';

@@ -11,6 +11,8 @@ import Load, { load } from './load';
 
 import Tool, { tool } from './utils';
 
+import Watermark from './watermark';
+
 export {
     Memory, // 数据本地存储
     NumToZh_cn, // 数字 转换 中文
@@ -29,4 +31,6 @@ export {
 
     Tool, // 工具类
     tool, // 实例
+
+    Watermark, // 生成水印
 }

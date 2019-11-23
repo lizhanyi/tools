@@ -25,7 +25,6 @@ export default class Memory{
         /**
          * 存储类型 映射
          */
-
         this.__proto__.map = {
             'session': window.sessionStorage,
             'local': window.localStorage

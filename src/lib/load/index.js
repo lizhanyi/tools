@@ -13,6 +13,9 @@
  */
 
 import { class2type } from './../utils';
+import { dom } from './../dom';
+
+const { create, appendChild, getNode } = dom;
 
 export default class Load {
 
@@ -22,7 +25,7 @@ export default class Load {
         this._headNode = null;
 
         // link 节点 属性配置
-        this.linkConfig = {
+        this.__proto__.linkConfig = {
             'charset': 'utf-8',
             'rel': 'stylesheet',
             'type': 'text/css'
@@ -31,7 +34,7 @@ export default class Load {
         /** 
          * 字段和方法相关映射
         */
-        this.map = {
+        this.__proto__.map = {
             'js': 'script',
             'css': 'css',
             'png': 'image',
@@ -41,46 +44,6 @@ export default class Load {
         }
     }
 
-
-    /**
-     * 功能： 新建节点
-     * 参数：tagName
-     */
-    _createElement( tagName ) {
-        return document.createElement( tagName );
-    }
-
-
-    /**
-     * 功能： 插入节点
-     * 参数： childNode， 子节点对象， parentNode，父节点对象， 默认值 document
-     * 返回值： 无
-     */
-    _appendChild( childNode, parentNode = document ){
-        parentNode.appendChild( childNode );
-    }
-
-
-    /**
-     * 功能： 删除节点
-     * 参数： childNode， 子节点对象， parentNode，父节点对象， 默认值 document
-     * 返回值： 删除后的节点
-     */
-    _removeChild( childNode ) {
-        return childNode.parentNode.removeChild( childNode );
-    }   
-
-
-    /**
-     * 功能： 获取指定节点
-     * 参数： selector， css 选择器， context， 作用域( 注意节点类型 )， 默认 document
-     * 返回值： DOM 对象 为 list 
-     */
-    _getNode( selector, context = document ) {
-        return context.querySelectorAll( selector );
-    }
-
-
     /**
      * 功能： 动态加载 css 逻辑处理
      * 参数： urls, 数组或以逗号隔开的字符串
@@ -88,20 +51,21 @@ export default class Load {
      */
     css( urls ) {
 
-        const { _createElement, _appendChild, linkConfig, _getNode, _headNode } = this;
+        const { linkConfig, _headNode } = this;
 
-        this._headNode = _headNode || _getNode( 'head' )[0];
+        this._headNode = _headNode || getNode( 'head' )[0];
 
-        return this.handleParam( urls ).map( url => {
+        return this.handleParam( urls ).filter( item => /(\.css)$/.test( item ) ).map( url => {
 
-            const linkNode  = _createElement( 'link' );
+            const linkNode  = create( 'link' );
+
             const p = new Promise( resolve => linkNode.onload = () => resolve( url ) );
     
             Object.entries( linkConfig ).forEach( ([ key, value ]) => linkNode[ key ] = value );
     
             linkNode.href = url;
 
-            _appendChild( linkNode,  this._headNode );
+            appendChild( linkNode,  this._headNode );
     
             return p;
         })
@@ -115,13 +79,11 @@ export default class Load {
      */
     script( urls ) {
 
-        const { _createElement, _appendChild, _getNode, _headNode } = this;
+        this._headNode = this._headNode || getNode( 'head' )[0];
 
-        this._headNode = _headNode || _getNode( 'head' )[0];
+        return this.handleParam( urls ).filter( item => /(\.js)$/.test( item ) ).map( url => {
 
-        return this.handleParam( urls ).map( url => {
-
-            const scriptNode = _createElement( 'script' );
+            const scriptNode = create( 'script' );
 
             const p = new Promise( ( resolve, reject ) => {
       
@@ -136,7 +98,7 @@ export default class Load {
     
             scriptNode.src = url;
 
-            _appendChild( scriptNode,  this._headNode );
+            appendChild( scriptNode,  this._headNode );
 
     
             return p;
@@ -147,12 +109,12 @@ export default class Load {
 
     /**
      * 功能： 图片加载
-     * 参数： url
+     * 参数： urls,  source, 调用干函数的源头 
      * 返回值： promise 对象
      */
     image( urls ) {
 
-        return this.handleParam( urls ).map( url => {
+        return this.handleParam( urls ).filter( item => /\.(png|gif|jpe?g)$/.test( item ) ).map( url => {
 
             const img = new Image();
 
@@ -174,7 +136,7 @@ export default class Load {
 
     /**
      * 功能：处理参数
-     * 参数：param， 传入的 url 参数
+     * 参数：param, 传入的 url 参数
      * 返回值：处理后的结果，数组类型
      *
      */
