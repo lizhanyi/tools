@@ -122,6 +122,7 @@ export default class Watermark {
     reRender( content="hello world" ){
         this.options = { ...this.options, content };
         this.init().render();
+        return this;
     }
 
 }

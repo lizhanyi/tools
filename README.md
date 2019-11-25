@@ -316,6 +316,55 @@ load.fetch( 'png.png, gif.gif , css.css, javascript.js' ).then( res =>
 
     tool.filterFields({name: 'name', age: 'age', sex: 'sex' }, ['name'] ); // '{"name":"name"}'
 ```
+#### watermark 生成水印
+
+```javascript
+/**
+ * 功能：生成水印
+ * @dec 值生成水印图片， 如果需要请用背景实现( 或使用伪元素 )
+ * 1. init()
+ *  功能：初始化， 主要用于生成 canvas 画布，并设置相关参数
+ *  参数：无
+ *  返回值：当前实例
+ * 2.render()
+ *  功能：绘制画布
+ *  参数：无 
+ *  返回值：实例对象
+ * 3. getImage( needle = false )
+ *  功能：获取 图片 url 地址
+ *  参数：needle, 默认为false, 当为 true 时会自动执行 init 和 render 方法
+ *  返回值：base64 图片
+ * 4. reRender( content )
+ *  功能：重新绘制画布，从新初始化配置
+ *  参数：content, 文案信息
+ *  返回值：当前实例
+ * 
+ * 
+*/
+
+import { Watermark } from 'feitools';
+
+const watermark = new Watermark(); // 实例化 Load
+
+const url1 =  watermark.init().render().getImage();
+
+const url2 =  watermark.getImage( true );
+
+const url3 =  watermark.reRender( 'reRender' ).getImage();
+
+
+
+const image = new Image();
+
+image.src = url;
+
+
+
+
+document.body.appendChild( image );
+
+```
+
 
 # m
 ## mm
