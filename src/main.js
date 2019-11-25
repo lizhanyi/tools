@@ -73,7 +73,12 @@ import {
 /************************** load 模块测试  **************************/
 
 
-const watermark = new Watermark();
+const watermark = new Watermark({
+    pad: {
+        width: 100,
+        height: 50
+    }
+});
 const url =  watermark.init().render().getImage();
 
 const image = new Image();

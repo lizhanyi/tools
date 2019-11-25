@@ -27,7 +27,7 @@ export default class Watermark {
      */
     getTextBorderline(){
 
-        const { font, content } = this.options;
+        const { font, content, pad } = this.options;
         
         const span = dom.create( 'span' );
 
@@ -43,11 +43,14 @@ export default class Watermark {
 
         dom.appendChild( span );
 
-        const offset = dom.getOffset( span );
+        let { width, height } = dom.getOffset( span );
 
         dom.remove( span );
 
-        return offset
+        return {
+            width: width + pad.width,
+            height: height + pad.height
+        }
 
     }
 
@@ -81,14 +84,13 @@ export default class Watermark {
      */
     render(){
         
-        const { options: { font, color, content }, canvas } = this;
+        const { options: { font, color, content, pad }, canvas } = this;
         const ctx = canvas.getContext( '2d' );
-
         ctx.save();
         ctx.font = font;
         ctx.fillStyle = color;
-        ctx.textBaseline = 'bottom';
-        ctx.fillText( content, 0, canvas.height );
+        ctx.textBaseline = 'hanging';
+        ctx.fillText( content, pad.width / 2,  pad.height / 2 + 5 );
         ctx.restore();
         return this;
 

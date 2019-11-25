@@ -29,6 +29,14 @@ export default {
     content: 'hello world',
 
     /** 
+     * 补白， 默认补白 10px
+    */
+    pad: {
+        width: 10,
+        height: 10
+    },
+
+    /** 
      * 模式 2 种, 1, background; 2, canvas; 默认 背景模式
     */
     // mode: 'background',
