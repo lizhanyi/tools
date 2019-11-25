@@ -71,6 +71,7 @@ export const {
     isSet,
     isMap,
     isPromise,
+    
     getType,
     isEmptyObject
 } = class2type;

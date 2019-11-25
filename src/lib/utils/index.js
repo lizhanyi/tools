@@ -1,5 +1,7 @@
-import { class2type, isArray, isObject, isDate, isNumber } from './class2type';
-import { toString,  hasOwn, slice } from './vars';
+import { class2type, isArray, isObject, isDate } from './class2type';
+import { arrayExtend } from './array';
+import { stringExtend } from './string';
+import extend from './extend';
 
 export default class Tool{
 
@@ -35,7 +37,7 @@ export default class Tool{
 
     /**
      * 功能：将json串 转换成 json 并 抽出 指定的 键值
-     * 参数：str，json 字符串，fields，数组，元素为键
+     * 参数：str，json  字符串，fields，数组，元素为键
      * 返回值：处理后的字符串
      */
     pickUpFields( str, fields ){
@@ -105,8 +107,6 @@ export default class Tool{
      */
     formatDate( date, format = "YYYY-MM-DD hh:mm:ss"){
 
-        const { groupArray, _formatMiddleFunc } = this;
-
         const dateStr = format.split( /\s+/ );
 
         const types = [ 'date', 'time' ];
@@ -128,8 +128,8 @@ export default class Tool{
             return this.prevZero( item === 'Month' ? ret + 1 : ret );
         });
 
-        return groupArray( dates, 3 ).map( ( item, index ) => 
-            _formatMiddleFunc( 
+        return arrayExtend.group( dates, 3 ).map( ( item, index ) => 
+            this._formatMiddleFunc( 
                 types[ index ], 
                 dateStr[ index ], 
                 item 
@@ -143,47 +143,13 @@ export default class Tool{
      isFalsy( param ){
         return param === null || param === '' || param === undefined || param === false || param === 'null';
     }
-
-    /*** 
-     * 功能：数组分组，仅支持分 2 组
-     * 参数：array, 数组; condition, 分组规则，可以是数组，对象
-     * 返回值：分组后的数据
-    */
-    groupArray( array=[], condition ){
-
-        const { getType } = class2type;
-
-        const arrayCopy = [ ...array ];
-
-        if( !isArray( array ) ){
-
-            throw `Expected arguments 1 is array, but got a ${ getType( array, true ) }`;
-        }
-        
-        if( !isNumber( +condition ) && !isArray( condition ) && !isObject( condition )  ){
-
-            throw `Expected arguments 2 is number or array, but got a ${ getType( condition, true ) }`;
-        }
-
-        // 如何是数字 直接分组处理
-        if( isNumber( condition ) ){
-            return [ arrayCopy.splice( 0, condition ),  arrayCopy ];
-        } 
-
-        throw `Method only supports 2 arguments and bunber split, later apply more supports.`;
-
-    }
-    
 }
-
 
 export const tool = new Tool();
 
 export {
-    toString, // 
-    hasOwn,
-    slice,
-
     class2type,
-
+    extend,
+    stringExtend,
+    arrayExtend
 }

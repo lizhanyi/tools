@@ -45,7 +45,7 @@ import {
 // console.log( date, 'date' );
 
 // 3. groupArray()
-    const arrs = tool.groupArray( [ 'q', 'w', 'e', 'r', 't' ], 3 );
+    // const arrs = tool.groupArray( [ 'q', 'w', 'e', 'r', 't' ], 3 );
 
     console.log( arrs ); // [ [ 'q', 'w', 'e' ], [ 'r', 't' ] ]
 
