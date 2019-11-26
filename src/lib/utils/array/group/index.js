@@ -3,7 +3,7 @@
  * 参数：array, 数组; condition, 分组规则，可以是数组，对象
  * 返回值：分组后的数据
 */
-import { isObject, isArray, isNumber, getType } from './../class2type';
+import { isObject, isArray, isNumber, getType } from './../../class2type';
 
 export const group = ( array=[], condition ) => {
 

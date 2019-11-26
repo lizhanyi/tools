@@ -9,7 +9,7 @@ import RegExp, { regExp } from './regExp';
 
 import Load, { load } from './load';
 
-import Tool, { tool } from './utils';
+import * as tool  from './utils';
 
 import Watermark from './watermark';
 
@@ -29,8 +29,7 @@ export {
     Load, // 静态 资源加载类
     load, // 实例
 
-    Tool, // 工具类
-    tool, // 实例
+    tool, // 工具
 
     Watermark, // 生成水印
 }

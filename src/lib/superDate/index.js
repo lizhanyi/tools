@@ -3,7 +3,7 @@
  * 后期后根据业务需求， 继续丰富功能
  */
 
-import { tool } from './../utils';
+import { stringExtend } from './../utils';
 import { types, map } from './constant';
 
 export default class SuperDate{
@@ -178,7 +178,7 @@ export default class SuperDate{
      */
     before( num, type="day" ){
 
-        return this[ `before${ this.map[ tool.toUpper( type, true ) ] }s`]( +num ) 
+        return this[ `before${ this.map[ stringExtend.toUpper( type, true ) ] }s`]( +num ) 
     }
 
 
@@ -213,7 +213,7 @@ export default class SuperDate{
      */
     after( num, type ){
 
-        return this[ `after${ this.map[ tool.toUpper( type, true ) ] }s`]( +num );
+        return this[ `after${ this.map[ stringExtend.toUpper( type, true ) ] }s`]( +num );
     }
     
 

@@ -11,7 +11,7 @@ const entry = resolve({
     dev: 'src/main.js', 
     prod: 'src/lib/index.js' 
 }[ process.env.NODE_ENV ]);
-
+// console.log( __dirname, '__dirname', path.join( __dirname, 'src' ) );
 module.exports = {
     entry,
     output: {
@@ -19,6 +19,12 @@ module.exports = {
         filename: 'index.js',
         // output.library和output.libraryTarget
         libraryTarget: "umd"
+    },
+    resolve: {
+        alias: {
+            "tool": path.join( __dirname, 'src', 'lib', 'util' ),
+            
+        }
     },
     module: {
         rules: [{

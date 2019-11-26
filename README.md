@@ -344,7 +344,7 @@ load.fetch( 'png.png, gif.gif , css.css, javascript.js' ).then( res =>
 
 import { Watermark } from 'feitools';
 
-const watermark = new Watermark(); // 实例化 Load
+const watermark = new Watermark(); // 实例化 Watermark
 
 const url1 =  watermark.init().render().getImage();
 

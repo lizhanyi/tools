@@ -2,9 +2,9 @@
  * @param { key: 存储的键  }
  * @param { type: 存储类型 local => localStorage, session => sessionStorage  }
 */
-import { class2type, tool } from './../utils';
+import { class2type, func } from './../utils';
 
-const { isUndefined, isArray, isObject } = class2type;
+const { isUndefined, isArray } = class2type;
 
 export default class Memory{
 
@@ -38,7 +38,7 @@ export default class Memory{
      * 存储数据， value 数据
      */
     setItem( value, replacer ){
-        this.map[ this.type ].setItem( this.key, tool.filterFields( value, replacer ) );
+        this.map[ this.type ].setItem( this.key, func.filterFields( value, replacer ) );
     }
 
 

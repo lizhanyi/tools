@@ -23,7 +23,7 @@ export default class Watermark {
     /**
      * 功能：获取文案边界范围
      * 参数：无
-     * 返回值：无
+     * 返回值：边界坐标
      */
     getTextBorderline(){
 

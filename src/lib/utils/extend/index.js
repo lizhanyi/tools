@@ -2,8 +2,7 @@
  * 功能： 数据拷贝
 */
 import { isBoolean, isObject, isArray } from './../class2type';
-import { arrayExtend } from './../array';
-import './../vars';
+import arrayExtend from './../array';
 
 /**
  * 功能：将数据拷贝， 深拷贝
@@ -20,7 +19,7 @@ export const deepCopy = ( target, object ) => {
 
     for( let key in object ){
 
-        if( object.hasOwn( key ) ){
+        if( object.hasOwnProperty( key ) ){
 
             if( typeof object[ key ] === 'object' ){
                 target[ key ] = isArray( object[ key ] ) ? [] : {};
