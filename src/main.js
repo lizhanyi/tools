@@ -14,6 +14,18 @@ import {
     Watermark,
 } from './lib';
 
+/************************** SuperDate **************************/
+    const superDate = new SuperDate( '2019-12-21' );
+    // console.log( superDate, 'date' );
+
+    console.log( superDate.before(1).get() )
+
+
+
+
+/***************************************************************/
+
+
 
 /************************** NumToZh_cn **************************/
 
@@ -60,9 +72,9 @@ import {
 // console.log( date, 'date' );
 
 // 3. groupArray()
-    const arrs = tool.arrayExtend.group( [ 'q', 'w', 'e', 'r', 't' ], 3 );
+    const arrs =  [ 'q', 'w', 'e', 'r', 't' ].group( 3 );
 
-    console.log( arrs ); // [ [ 'q', 'w', 'e' ], [ 'r', 't' ] ]
+    console.log( arrs, 'group' ); // [ [ 'q', 'w', 'e' ], [ 'r', 't' ] ]
 
 
 

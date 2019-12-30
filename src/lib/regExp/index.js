@@ -6,7 +6,7 @@
  * 4. 负后顾：(?<!exp2)exp1 查找前面不是 exp2 的 exp1
  ***********************************************************************
  */
-import { class2type } from './../utils';
+import { class2type } from 'class2type';
 
 export default class RegExp {
 

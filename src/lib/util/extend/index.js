@@ -1,8 +1,7 @@
 /** 
  * 功能： 数据拷贝
 */
-import { isBoolean, isObject, isArray } from './../class2type';
-import arrayExtend from './../array';
+import { isBoolean, isObject, isArray } from 'class2type';
 
 /**
  * 功能：将数据拷贝， 深拷贝
@@ -39,7 +38,7 @@ export default function( ...args ){
 
     if( isBoolean( args[0] ) && args[0] === true ){ // 深度拷贝
 
-        let [ prev, rest ] = arrayExtend.group( args.slice(1).filter( item => isObject( item ) ), 1);
+        let [ prev, rest ] = args.slice(1).filter( item => isObject( item ) ).group( 1 );
 
         rest.forEach( item => prev = deepCopy( prev[0], item ) );
 

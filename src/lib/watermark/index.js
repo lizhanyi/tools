@@ -4,7 +4,7 @@
 */
 
 
-import { dom } from './../dom';
+import { dom } from 'dom';
 
 import defaultOpt from './conf'; // 默认配置项
 
@@ -15,7 +15,9 @@ export default class Watermark {
         /** 
          * 合并配置项
         */
-        this.options = { ...defaultOpt, ...options };
+        const pad = { ...defaultOpt.pad, ...options.pad };
+
+        this.options = { ...defaultOpt, ...options, pad };
 
     }
 

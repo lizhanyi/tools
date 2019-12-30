@@ -2,7 +2,7 @@
  * @param { key: 存储的键  }
  * @param { type: 存储类型 local => localStorage, session => sessionStorage  }
 */
-import { class2type, func } from './../utils';
+import { class2type, func } from 'util';
 
 const { isUndefined, isArray } = class2type;
 
@@ -129,8 +129,8 @@ export default class Memory{
      * 清空所有数据
      */
     static clearAll(){
-        this.clear('local');
-        this.clear('session');
+        this.clear( 'local' );
+        this.clear( 'session' );
     }
 
 

@@ -12,8 +12,8 @@
  * 
  */
 
-import { class2type } from './../utils';
-import { dom } from './../dom';
+import { class2type } from 'class2type';
+import { dom } from 'dom';
 
 const { create, appendChild, getNode } = dom;
 

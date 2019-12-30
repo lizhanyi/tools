@@ -1,6 +1,6 @@
 
 import { dataTypes } from './constant';
-import { toString } from './../vars';
+import { toString } from '../vars';
 
 class Class2type{ 
     constructor(){
@@ -56,6 +56,7 @@ export {
 };
 
 export const { 
+    
     isBoolean, 
     isNumber, 
     isString,

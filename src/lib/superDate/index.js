@@ -3,7 +3,6 @@
  * 后期后根据业务需求， 继续丰富功能
  */
 
-import { stringExtend } from './../utils';
 import { types, map } from './constant';
 
 export default class SuperDate{
@@ -58,6 +57,7 @@ export default class SuperDate{
         if( !/^\d{4}(-|\/)\d{1,2}(-|\/)\d{1,2}/.test( this.date ) ){
             throw 'date format is wrong'
         }
+
         
         let [ year, month, day ] = this.date.split(/-|\//g);
 
@@ -113,7 +113,7 @@ export default class SuperDate{
             [ 'Hours', 'h', 2 ], 
             [ 'Minutes', 'm', 2 ], 
             [ 'Seconds', 's', 2 ], 
-            [ 'Milliseconds', 'ms', 4] 
+            [ 'Milliseconds', 'ms', 3 ] 
         ].reduce( ( prevTotal, [ method, key, count ] ) => {
 
             let value = this.result[ 'get' + method ]();
@@ -126,7 +126,8 @@ export default class SuperDate{
                 value === 0 ? 7 : value;
             }
 
-            value = tool.prevZero( value, count );
+            value = String( value ).prevZero( count )
+            //  tool.prevZero( value, count );
             
             return {
                 ...prevTotal,
@@ -176,9 +177,9 @@ export default class SuperDate{
      *  获取当前的时间的前些天、月、年
      *
      */
-    before( num, type="day" ){
+    before( num, type = "day" ){
 
-        return this[ `before${ this.map[ stringExtend.toUpper( type, true ) ] }s`]( +num ) 
+        return this[ `before${ this.map[ type.toUpper( true ) ] }s`]( +num ) 
     }
 
 
@@ -195,6 +196,7 @@ export default class SuperDate{
      * 几月后
      */
     afterMonths( num ){
+
         return this._getNewDate( 'month', num );
     }
 
@@ -203,6 +205,7 @@ export default class SuperDate{
      * 几天后
      */
     afterDays( num, _type ){
+
         return this._getNewDate( 'day', num );
     }
     
@@ -211,9 +214,9 @@ export default class SuperDate{
      *  获取当前的时间的之后些天、月、年
      *
      */
-    after( num, type ){
+    after( num, type = "day" ){
 
-        return this[ `after${ this.map[ stringExtend.toUpper( type, true ) ] }s`]( +num );
+        return this[ `after${ this.map[ type.toUpper( true ) ] }s`]( +num );
     }
     
 

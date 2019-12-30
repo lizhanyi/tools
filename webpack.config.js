@@ -7,11 +7,13 @@ const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 
 const resolve = dirname => path.resolve( __dirname, dirname );
 
+const alias = paths => Object.entries( paths ).reduce( ( prevTotal, [ key, value ] ) => ({ ...prevTotal, [ key ]: path.join( __dirname, `src/lib/${value}`)}), {} );
+
 const entry = resolve({ 
     dev: 'src/main.js', 
     prod: 'src/lib/index.js' 
 }[ process.env.NODE_ENV ]);
-// console.log( __dirname, '__dirname', path.join( __dirname, 'src' ) );
+
 module.exports = {
     entry,
     output: {
@@ -21,10 +23,26 @@ module.exports = {
         libraryTarget: "umd"
     },
     resolve: {
-        alias: {
-            "tool": path.join( __dirname, 'src', 'lib', 'util' ),
-            
-        }
+        extensions: [ '.js' ],
+        alias: alias({
+            dom: 'dom',
+            load: 'load',
+            memory: 'memory',
+            numToZh_cn: 'numToZh_cn',
+            platform: 'platform',
+            regExp: 'regExp',
+            superDate: 'superDate',
+            timeFrame: 'timeFrame',
+            URL: 'URL',
+            util: 'util',
+            watermark: 'watermark',
+
+            class2type: 'util/class2type',
+            array: 'util/array',
+            string: 'util/string',
+            func: 'util/func',
+            extend: 'util/extend',
+        })
     },
     module: {
         rules: [{

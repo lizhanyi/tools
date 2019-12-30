@@ -1,9 +1,7 @@
 /** 
  * @dec 常用函数
 */
-import { isArray, isObject, isDate } from './../class2type';
-import stringExtend  from './../string';
-import arrayExtend  from './../array';
+import { isArray, isObject, isDate } from 'class2type';
 
 export default class Func {
 
@@ -13,27 +11,6 @@ export default class Func {
      */
     isFalsy( param ){
         return param === null || param === '' || param === undefined || param === false || param === 'null';
-    }
-
-        /**
-     * 功能：将json串 转换成 json 并 抽出 指定的 键值
-     * 参数：str，json  字符串，fields，数组，元素为键
-     * 返回值：处理后的字符串
-     */
-    pickUpFields( str, fields ){
-
-        if( isArray( fields ) && fields.length > 0 ){
-            
-            return JSON.parse( str, ( key, value ) => key === '' ? value : fields.includes( key ) ? value : undefined );
-        }
-
-        return JSON.parse( str )
-
-        // return Array.isArray( fields ) && fields.length > 0 ? 
-
-        //     JSON.parse( str, ( key, value ) => key === '' ? value : fields.includes( key ) ? value : undefined ) 
-        //     : 
-        //     JSON.parse( str );
     }
     
 
@@ -61,7 +38,8 @@ export default class Func {
         return JSON.stringify( value );
     }
 
-        /**
+
+    /**
      * 功能：formatDate 的中间函数， 协助处理数据
      * 参数：type, 数据类型， str， 字符串， 对应时间的值
      * 返回值：处理后的结果
@@ -77,6 +55,7 @@ export default class Func {
 
         return datas.map( (item = '', index) => index % 2 === 0 ? data[ index / 2 ].substr( -item.length ) : item );
     }
+
 
     /**
      * 功能：格式化数据，返回 json
@@ -103,10 +82,10 @@ export default class Func {
             'Milliseconds'
         ].map( item => {
             const ret = date[`get${item}`]();
-            return stringExtend.prevZero( item === 'Month' ? ret + 1 : ret );
+            return String( item === 'Month' ? ret + 1 : ret ).prevZero();
         });
 
-        return arrayExtend.group( dates, 3 ).map( ( item, index ) => 
+        return dates.group( 3 ).map( ( item, index ) => 
             this._formatMiddleFunc( 
                 types[ index ], 
                 dateStr[ index ], 
