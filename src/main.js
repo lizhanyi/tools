@@ -14,6 +14,9 @@ import {
     Watermark,
 } from './lib';
 
+
+console.log( URL.set({ name: 'name', sex: 'sex' }) );
+
 /************************** SuperDate **************************/
     const superDate = new SuperDate( '2019-12-21' );
     // console.log( superDate, 'date' );
@@ -30,13 +33,12 @@ import {
 /************************** NumToZh_cn **************************/
 
     const TOKEN = new Memory( 'TOKEN', 'local' );
-    const USER_INFO = 
 
     TOKEN.setItem({
         name: 'name',
         key: 'key',
         sex: 'sex'
-    }, [ 'sex' ]);
+    }, [ 'sex' ] );
 
     console.log( TOKEN.getItem() );
 
@@ -61,9 +63,9 @@ import {
 
     console.log( jsonstr,  json );
 
-    const parsejson = tool.func.pickUpFields( jsonstr, [ 'name', 'sex' ]);
+    // const parsejson = tool.func.pickUpFields( jsonstr, [ 'name', 'sex' ]);
 
-    console.log( parsejson );
+    // console.log( parsejson );
 
 
 // 2. format();

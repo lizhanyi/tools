@@ -12,7 +12,7 @@
  * 
  */
 
-import { class2type } from 'class2type';
+import { isString, isArray } from 'class2type';
 import { dom } from 'dom';
 
 const { create, appendChild, getNode } = dom;
@@ -142,10 +142,7 @@ export default class Load {
      */
     handleParam( param ){
 
-        const type = class2type.getType( param );
-
-        return type === 'String' ? param.trim().split( /\s*,\s*/ ) : type === 'Array' ? param : []; 
-
+        return isString( param ) ? param.trim().split( /\s*,\s*/ ) : isArray( param ) ? param : []; 
     }
 
 

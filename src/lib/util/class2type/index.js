@@ -18,7 +18,7 @@ class Class2type{
      */
     getType( opt, shift = false ){
 
-        const typeStr = toString.call( opt ).replace(/^\[object\s+(.+)\]$/,'$1');
+        const typeStr = toString.call( opt ).replace( /^\[object\s+(.+)\]$/, '$1' );
 
         return shift ? typeStr.toLowerCase() : typeStr
     }

@@ -118,7 +118,7 @@ export default class Memory{
 
 
     /**
-     * 清除空指定类型的数据
+     * 清空指定类型的数据
      */
     static clear( type="local"){
         new this().map[ type ].clear();

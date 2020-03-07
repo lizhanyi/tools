@@ -11,11 +11,11 @@ export default class URL {
 
         if( opt === '' ) return '';
 
-        const opts = opt.substr(1).split('&');
+        const opts = opt.substr( 1 ).split( '&' );
 
         return opts.reduce( ( preTotal, el ) => {
 
-            const [ key, value='' ] = el.split( '=' );
+            const [ key, value = '' ] = el.split( '=' );
 
             return key === '' ? {} : { ...preTotal,  [ key ]: value }
 
@@ -30,14 +30,14 @@ export default class URL {
      */
     static toJSON( url ){
 
-        const { search, protocol, hostname, pathname, port, hash } = window.location;
+        const { search, pathname, hash, origin } = window.location;
 
         const inst = new this();
 
         return {
             search: inst.handle( decodeURIComponent( search ) ),
             hash: decodeURIComponent( hash ),
-            uri: decodeURIComponent( protocol + hostname + port + pathname )
+            uri: decodeURIComponent( origin + pathname )
         }
     }
 
