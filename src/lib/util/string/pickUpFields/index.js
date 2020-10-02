@@ -7,22 +7,17 @@
 import { isObject, isArray } from 'class2type';
 
 export default function( fields = [], shift = false ){
-
-    if( isArray( fields ) && fields.length > 0 ){
-
-        return JSON.parse( this, ( key, value ) => {
-
-            if( key === '' || fields.includes( key ) ) {
-                return value;
-            }else{
-
-                if( !shift ){
-                    return undefined;
-                }
-
-                return isObject( value ) ? value : undefined;
-            }
-        })
-    }
-    return JSON.parse( this );
+  if( isArray( fields ) && fields.length > 0 ){
+    return JSON.parse( this, ( key, value ) => {
+      if( key === '' || fields.includes( key ) ) {
+        return value;
+      }else{
+        if( !shift ){
+          return undefined;
+        }
+        return isObject( value ) ? value : undefined;
+      }
+    })
+  }
+  return JSON.parse( this );
 }

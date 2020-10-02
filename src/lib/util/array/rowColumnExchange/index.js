@@ -8,31 +8,22 @@
 import { isArray } from 'class2type';
 
 export default function(){
+  const ret = [];
 
-    const ret = [];
-
-    // 获取二位数组中最长的元素
-    const maxLen = Math.max( ...this.map( item => {
-
-        if( isArray( item )){
-            return item.length 
-        }
-
-        throw 'expected 2D array is wrong';
-
-    }));
-
-    for( let i = 0; i < maxLen; i ++ ){
-
-        const rows = [];
-
-        this.forEach( item => {
-            rows.push( item[ i ] );
-        });
-        
-        ret.push( rows );
+  // 获取二位数组中最长的元素
+  const maxLen = Math.max( ...this.map( item => {
+    if( isArray( item )){
+      return item.length 
     }
+    throw 'expected 2D array is wrong';
+  }));
 
-    return ret;
-
+  for( let i = 0; i < maxLen; i ++ ){
+    const rows = [];
+    this.forEach( item => {
+      rows.push( item[ i ] );
+    });
+    ret.push( rows );
+  }
+  return ret;
 } 

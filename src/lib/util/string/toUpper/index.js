@@ -21,13 +21,13 @@
 
 export default function( slice = false ){
 
-    let charAt0 = this.charAt( 0 );
+  let charAt0 = this.charAt( 0 );
 
-    // if( !/[a-zA-z]/.test( charAt0 ) ){
-    //     throw 'expected a letter, but got a other char';
-    // }
+  // if( !/[a-zA-z]/.test( charAt0 ) ){
+  //     throw 'expected a letter, but got a other char';
+  // }
 
-    charAt0 = charAt0.toUpperCase();
+  charAt0 = charAt0.toUpperCase();
 
-    return slice ? charAt0 : charAt0 + this.substr( 1 );
+  return slice ? charAt0 : charAt0 + this.substr( 1 );
 }

@@ -8,7 +8,7 @@ import extend from './extend';
 import { func } from './func';
 
 export {
-    class2type,
-    extend,
-    func
+  class2type,
+  extend,
+  func
 }

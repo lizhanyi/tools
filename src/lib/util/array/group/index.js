@@ -7,15 +7,13 @@ import { isNumber, getType } from 'class2type';
 
 export default function( slice = 0 ){
 
-    const copy = [ ...this ];
+  const copy = [ ...this ];
 
-    if( !isNumber( +slice ) ){
-        throw `Expected arguments 1 is number or array, but got a ${ getType( slice, true ) }`;
-    }
+  if( !isNumber( +slice ) ){
+    throw `Expected arguments 1 is number or array, but got a ${ getType( slice, true ) }`;
+  }
 
-    return [ copy.splice( 0, slice ),  copy ];
-
-
+  return [ copy.splice( 0, slice ),  copy ];
 }
 
 // export const group = function( array = [], condition ) {

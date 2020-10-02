@@ -1,18 +1,18 @@
 {
-    "presets": [
-        [
-            "@babel/env", {
-                "modules": false,
-                "targets": {
-                    "browsers": [ "ie >=9", "last 2 versions", "> 0.2%", "maintained node versions", "not dead" ]
-                },
-                "useBuiltIns": "usage",
-                "corejs": 3,
-                "debug": false
-            }
-        ]
-    ],
-    "plugins":[ 
-        "@babel/plugin-proposal-class-properties"
-    ]
-  }
+	"presets": [
+		[
+			"@babel/env", {
+				"modules": false,
+				"targets": {
+					"browsers": [ "ie >=9", "last 2 versions", "> 0.2%", "maintained node versions", "not dead" ]
+				},
+				"useBuiltIns": "usage",
+				"corejs": 3,
+				"debug": false
+			}
+		]
+	],
+	"plugins":[ 
+		"@babel/plugin-proposal-class-properties"
+	]
+}

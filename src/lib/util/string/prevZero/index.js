@@ -7,7 +7,7 @@
 // const prevZero = ( content, count = 2, pad = '0' ) => String( content ).padStart( count, pad );
 
 export default function( count = 2 ){
-    return this.padStart( count, '0' )
+  return this.padStart( count, '0' )
 }; 
 
 
