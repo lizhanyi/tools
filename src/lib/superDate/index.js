@@ -1,17 +1,18 @@
-/**
- * 仅实现 简单的 业务需求， 如有其它需求请使用 moment
- * 后期后根据业务需求， 继续丰富功能
- */
+
 
 import { types, map } from './constant';
 
+/**
+ * 功能： 仅实现 简单的 业务需求， 实现日期的基本操作
+ * 
+ */
 export default class SuperDate{
   /**
    * @param { 满足格式 "/" 或 "-"， 建议使用"-" } date
    */
   constructor( date ){
 
-    this.date =  date;
+    this.date = date;
     // 结果默认值 
     this.result = this._format();
     // 操作日期时 的数据类型

@@ -1,6 +1,6 @@
 
 import { dataTypes } from './constant';
-import { toString } from '../vars';
+import { toString } from '../util/vars';
 
 class Class2type{ 
   constructor(){
@@ -15,12 +15,6 @@ class Class2type{
   getType( opt, shift = false ){
     const typeStr = toString.call( opt ).replace( /^\[object\s+(.+)\]$/, '$1' );
     return shift ? typeStr.toLowerCase() : typeStr
-  }
-  /**
-   * 检测 json 是否为空
-   */
-  isEmptyObject( param ){
-    return Object.keys( param ).length === 0;
   }
 }
 
@@ -66,5 +60,4 @@ export const {
   isPromise,
   
   getType,
-  isEmptyObject
 } = class2type;

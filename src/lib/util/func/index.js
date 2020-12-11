@@ -1,7 +1,41 @@
 /** 
- * @dec 常用函数
+ * 说明： 为了提高性能， 很多情况下采用了 for 循环实现遍历， 经过测试 for 循环遍历 性能高于 map forEach reduce 等
 */
 import { isArray, isObject, isDate } from 'class2type';
+
+import './nativeEnhance';
+
+// 获取 ua
+import getUa from './getUa';
+
+// 检测是否为空对象
+import isEmptyObject from './isEmptyObject';
+
+// 防弹跳
+import debounce from './debounce';
+
+// 节流
+import throttle from './throttle';
+
+// 使用分隔符 分割代码
+import splitNum from './splitNum';
+
+// 时间帧
+import timeFrame from './timeFrame';
+
+export {
+  getUa, 
+  isEmptyObject,
+  debounce, 
+  throttle,
+  splitNum,
+  timeFrame,
+}
+
+
+
+
+
 
 export default class Func {
   /**

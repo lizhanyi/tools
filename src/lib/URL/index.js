@@ -12,7 +12,7 @@ export default class URL {
     const opts = opt.substr( 1 ).split( '&' );
     return opts.reduce( ( preTotal, el ) => {
       const [ key, value = '' ] = el.split( '=' );
-      return key === '' ? {} : { ...preTotal,  [ key ]: value }
+      return key === '' ? preTotal : { ...preTotal,  [ key ]: value }
     }, null )
   }
   /**

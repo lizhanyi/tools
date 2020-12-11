@@ -18,7 +18,7 @@ export const deepCopy = ( target, object ) => {
     if( object.hasOwnProperty( key ) ){
       if( typeof object[ key ] === 'object' ){
         target[ key ] = isArray( object[ key ] ) ? [] : {};
-        deepCopy( object[ key ], target[ key ] );
+        deepCopy( target[ key ], object[ key ] );
       }else{
         target[ key ] = object[ key ];
       }
